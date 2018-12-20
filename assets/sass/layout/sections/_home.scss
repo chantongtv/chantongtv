@@ -1,0 +1,87 @@
+// ====================================================================
+// Home
+// ====================================================================
+section#gallery {
+
+	div.featured {
+		div.video {
+			padding: 56.25% 0 0 0;
+			position: relative;
+
+			iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	ul.filters {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 30px auto;
+		padding: 0;
+		li {
+			display: block;
+			a {
+				display: block;
+				font-size: 20px;
+				background: $chan-dark;
+				color: lighten($chan-dark, 30);
+				padding: 5px 15px;
+				font-weight: bold;
+				text-transform: uppercase;
+				transition: all 0.3s ease;
+
+				&.active {
+					background: $chan-green !important;
+					color: $chan-dark !important;
+				}
+
+				&:hover {
+					background: $chan-pink;
+					color: $chan-dark;
+				}
+			}
+		}
+	}
+
+	div.items {
+		position: relative;
+		font-size: 0;
+		width: calc(100% + 10px);
+		margin: 0 0 0 -5px;
+
+		div.item {
+			width: calc(33.33333333% - 10px);
+			position: relative;
+			background: $chan-dark;
+			display: inline-block;
+			margin: 5px;
+
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+}
+
+section#me {
+	div.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	img.photo {
+		width: calc(33.333333% - 5px);
+	}
+
+	div.column {
+		width: calc(66.666666% - 50px);
+	}	
+}

@@ -1,0 +1,126 @@
+// ====================================================================
+// Settings
+// ====================================================================
+
+// -------------------------------------
+// Font Weights
+// -------------------------------------
+
+$font-weight--thin        : 100;
+$font-weight--extra-light : 200;
+$font-weight--light       : 300;
+$font-weight--regular     : 400;
+$font-weight--medium      : 500;
+$font-weight--semi-bold   : 600;
+$font-weight--bold        : 700;
+$font-weight--extra-bold  : 800;
+$font-weight--black       : 900;
+
+// -------------------------------------
+// Base
+// -------------------------------------
+
+$em-base : 16px;
+$base-font-size   : 100%;
+$base-line-height : 150%;
+$small-font-size  : 12px;
+$letter-space     : 1px;
+
+// -------------------------------------
+// Body
+// -------------------------------------
+
+$body-font-color  : $base-color;
+$body-font-family : $font-family--primary;
+$body-font-weight : $font-weight--medium;
+$body-font-style  : normal;
+$body-font-size   : $em-base;
+
+// -------------------------------------
+// Headers
+// -------------------------------------
+
+$header-font-family    : $headers-font-family;
+$header-font-weight    : $font-weight--medium;
+$header-font-style     : normal;
+$header-font-color     : $base-color;
+$header-line-height    : 1.4;
+$header-top-margin     : .2em;
+$header-bottom-margin  : .5em;
+$header-text-rendering : optimizeLegibility;
+
+$h1-font-size: 1em;
+$h2-font-size: 1em;
+$h3-font-size: 1em;
+$h4-font-size: 1em;
+$h5-font-size: 1em;
+$h6-font-size: 1em;
+
+// -------------------------------------
+// Paragraph
+// -------------------------------------
+
+$p-font-family       : $p-font-family;
+$p-font-weight       : $font-weight--medium;
+$p-font-size         : 1em;
+$p-line-height       : 1.6;
+$p-margin-bottom     : em(20px);
+$p-aside-font-size   : em(14px);
+$p-aside-line-height : 1.35;
+$p-aside-font-style  : italic;
+$p-text-rendering    : optimizeLegibility;
+
+// -------------------------------------
+// Span
+// -------------------------------------
+
+$span-font-family       : $span-font-family;
+$span-font-weight       : $font-weight--medium;
+$span-font-size         : .9em;
+$span-line-height       : 1.6;
+$span-margin-bottom     : em(20px);
+$span-aside-font-size   : em(14px);
+$span-aside-line-height : 1.35;
+$span-aside-font-style  : italic;
+$span-text-rendering    : optimizeLegibility;
+
+// -------------------------------------
+// Hr
+// -------------------------------------
+
+$hr-border-width: 1px;
+$hr-border-style: solid;
+$hr-border-color: #ccc;
+$hr-margin: em(20px);
+
+// -------------------------------------
+// Breakpoints
+// -------------------------------------
+
+$breakpoint--mini		: 1px;
+$breakpoint--tiny		: 480px;
+$breakpoint--small		: 769px;
+$breakpoint--normal		: 960px;
+$breakpoint--large      : 1220px;
+$breakpoint--huge		: 1440px;
+
+$breakpoint-h--mini     : 700px;
+
+// -------------------------------------
+// Border radius
+// -------------------------------------
+
+$br--default    : .4em;
+$br--round      : 50%;
+
+// -------------------------------------
+// Transitions
+// -------------------------------------
+
+$trns-duration  : .3s;
+
+// -------------------------------------
+// Path to Assets
+// -------------------------------------
+
+$path--rel      : "../img";

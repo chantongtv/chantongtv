@@ -1,0 +1,82 @@
+// ====================================================================
+// Objects
+// ====================================================================
+
+
+body {
+	
+	width: calc(100%);
+	min-height: calc(100vh);
+
+	background: $chan-skin;
+	position: relative;
+	overflow-x: hidden;
+
+}
+
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+section {
+	width: 100%;
+	height: auto;
+	position: relative;
+	padding: 40px 20px;
+	// padding: 60px 20px 0 20px;
+
+}
+
+//Helpers
+.desk {
+	display: none;
+	@include breakpoint (normal-plus) {
+		display: block;
+	}
+}
+
+.mobile {
+	display: block;
+	@include breakpoint (normal-plus) {
+		display: none;
+	}
+}
+
+.disable {
+	display: none !important;
+}
+
+.blur {
+	filter: blur(3px);
+	overflow: hidden;
+
+	&:before {
+		content: '';
+		display: block;
+		background: rgba(255, 255, 255, 0.5);
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+}
+
+//button
+.btn {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	width: 100%;
+	height: 50px;
+	margin: 20px 0;
+	padding: 0 20px;
+	border-radius: 40px;
+	color: #FFFFFF;
+
+}

@@ -1,0 +1,23 @@
+/* _sprites.scss */
+
+//Sprites Config
+$sprite-spacing: 2px;
+
+@import "sprites/*.png";  
+
+//Sprites
+// $sprites:(
+//     icon_01:          facebook,
+//     icon_02:          twitter, 
+// ); 
+
+// @each $index, $valor in $sprites{
+//     .icon-#{$valor}{
+// 		display: inline-block;
+// 	    @include common-sprite(#{$valor}); 
+// 		width: common-sprite-width(#{$valor}); 
+// 		height: common-sprite-height(#{$valor});
+// 	}
+// }
+
+ 

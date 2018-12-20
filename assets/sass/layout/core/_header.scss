@@ -1,0 +1,67 @@
+// ====================================================================
+// Header
+// ====================================================================
+header {
+	height: 100px;
+	border-bottom: 4px solid $chan-dark;
+	background-color: $chan-red;
+	position: relative;
+
+	div.container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+		height: 100%;
+		max-width: calc(100% - 40px)
+	}
+
+	nav#main, nav#social {
+		width: calc(50% - 80px);
+		position: relative;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		ul {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+
+			li {
+				a {
+					color: $chan-skin;
+					font-size: 24px;
+				}
+			}
+		}
+	}
+
+	nav#main {
+		justify-content: flex-start;
+		ul {
+			max-width: 300px;		
+		}
+	}
+
+	nav#social {
+		justify-content: flex-end;
+		ul {
+			max-width: 200px;			
+		}
+	}
+
+	a.logo {
+		display: block;
+		width: 60px;
+		position: relative;
+
+		img {
+			width: 100%;
+			display: block;
+		}
+	}
+}

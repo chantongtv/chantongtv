@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Fragua';
+    src: url('Fragua-Bold.eot');
+    src: url('Fragua-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Fragua-Bold.woff2') format('woff2'),
+        url('Fragua-Bold.woff') format('woff'),
+        url('Fragua-Bold.ttf') format('truetype'),
+        url('Fragua-Bold.svg#Fragua-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Fragua';
+    src: url('Fragua-Light.eot');
+    src: url('Fragua-Light.eot?#iefix') format('embedded-opentype'),
+        url('Fragua-Light.woff2') format('woff2'),
+        url('Fragua-Light.woff') format('woff'),
+        url('Fragua-Light.ttf') format('truetype'),
+        url('Fragua-Light.svg#Fragua-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+

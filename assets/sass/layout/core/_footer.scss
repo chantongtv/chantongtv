@@ -1,0 +1,30 @@
+// ====================================================================
+// Footer
+// ====================================================================
+
+footer {
+	background: $chan-dark;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	position: relative;
+
+	a {
+		color: #fff;
+		margin: 0 5px;
+		font-size: 20px;
+
+		&.mail {
+			font-weight: bold;
+		}
+	}
+
+	span.divider {
+		width: 2px;
+		height: calc(100% - 20px);
+		background: $chan-yellow;
+		margin: 0 10px;
+	}
+}

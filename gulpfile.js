@@ -66,6 +66,7 @@ var paths = {
 
 		'assets/js/vendor/slick.js',
 		'assets/js/vendor/jquery.mask.js',
+		'assets/js/vendor/isotope.pkgd.min.js',
 
 		//'assets/js/vendor/jquery.mCustomScrollbar.js',
 		//'assets/js/vendor/jquery.center.js',
@@ -91,6 +92,7 @@ var paths = {
 
 		'assets/js/vendor/slick.js',
 		'assets/js/vendor/jquery.mask.js',
+		'assets/js/vendor/isotope.pkgd.min.js',
 
 		//System
 		'assets/js/core/_nameSpace.js',

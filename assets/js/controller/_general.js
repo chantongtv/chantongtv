@@ -22,7 +22,7 @@ APP.controller.General = {
  
 	funcao : function () {
 
-		APP.controller.Main.init();
+		// APP.controller.Main.init();
 
 	}
 

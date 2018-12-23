@@ -4814,6 +4814,7 @@ APP.controller.Home = {
 
     init : function () {
         this.filterItensGallery();
+        this.toggleMenu();
     },
 
     filterItensGallery : function () {
@@ -4836,6 +4837,14 @@ APP.controller.Home = {
             $itens.isotope({ filter: filterValue });
         });
 
+    },
+
+    toggleMenu : function () {
+        $('body').on('click', '.toggleMenu', function(event) {
+            event.preventDefault();
+            $(this).toggleClass('active');
+            $(this).parent().toggleClass('active');
+        });
     },
 
 };

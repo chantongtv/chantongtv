@@ -11,10 +11,15 @@ footer {
 	height: 50px;
 	position: relative;
 
+
 	a {
 		color: #fff;
 		margin: 0 5px;
 		font-size: 20px;
+
+		@media screen and (max-width: 600px) {
+			font-size: 15px;
+		}
 
 		&.mail {
 			font-weight: bold;

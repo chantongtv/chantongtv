@@ -5895,12 +5895,20 @@ readers do not read off random characters that represent icons */
 
 header
 {
-    position: relative; 
+    position: relative;
+    z-index: 10; 
 
     height: 100px;
 
     border-bottom: 4px solid #222;
     background-color: #f84b4b;
+}
+@media screen and (max-width: 600px)
+{
+    header
+    {
+        height: 80px;
+    }
 }
 header div.container
 {
@@ -5979,13 +5987,13 @@ header div.wrap a.toggleMenu
     {
         position: fixed;
         z-index: 3;
-        top: 33px;
+        top: 25px;
         right: 20px;
 
         display: block;
 
-        width: 40px;
-        height: 41px;
+        width: 25px;
+        height: 26px;
 
         background: #f84b4b;
         -webkit-box-shadow: 0 0 0 10px #f84b4b;
@@ -6023,7 +6031,7 @@ header div.wrap a.toggleMenu
         right: 0;
 
         width: 100%;
-        height: 3px;
+        height: 2px;
 
         -webkit-transition: all .3s ease;
              -o-transition: all .3s ease;
@@ -6039,8 +6047,8 @@ header div.wrap a.toggleMenu
     }
     header div.wrap a.toggleMenu span:nth-of-type(2)
     {
-        top: -webkit-calc(50% - 2px);
-        top:         calc(50% - 2px);
+        top: -webkit-calc(50% - 1px);
+        top:         calc(50% - 1px);
     }
     header div.wrap a.toggleMenu span:nth-of-type(3)
     {
@@ -6184,6 +6192,13 @@ header a.logo
 
     width: 60px;
 }
+@media screen and (max-width: 600px)
+{
+    header a.logo
+    {
+        width: 40px;
+    }
+}
 header a.logo img
 {
     display: block; 
@@ -6268,11 +6283,10 @@ li
 
 section
 {
-    position: relative;
+    position: relative; 
 
     width: 100%;
     height: auto;
-    padding: 40px 20px;
 }
 
 .desk
@@ -6359,13 +6373,27 @@ section
             align-items: center;
 }
 
-section#gallery div.featured div.video
+section#portfolio
 {
-    position: relative; 
-
-    padding: 56.25% 0 0 0;
+    margin: 0; 
+    padding: 0;
 }
-section#gallery div.featured div.video iframe
+section#portfolio div.featured
+{
+    position: relative;
+
+    padding: 40px 20px 20px;
+
+    background: #f66;
+}
+@media screen and (max-width: 600px)
+{
+    section#portfolio div.featured
+    {
+        padding: 20px 10px 10px;
+    }
+}
+section#portfolio div.featured div.bg
 {
     position: absolute;
     top: 0;
@@ -6374,16 +6402,41 @@ section#gallery div.featured div.video iframe
     width: 100%;
     height: 100%;
 }
+section#portfolio div.featured div.bg img
+{
+    position: absolute;
+    top: 0;
+    left: 0; 
 
-section#gallery ul.filters
+    width: 100%;
+    height: 100%;
+}
+section#portfolio div.featured div.video
+{
+    position: relative;
+    z-index: 1;
+
+    padding: 56.25% 0 0 0;
+
+    background: #222;
+}
+section#portfolio div.featured div.video iframe
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+section#portfolio ul.filters
 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
 
-    margin: 30px auto;
-    padding: 0; 
+    background: #f66; 
 
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -6394,11 +6447,11 @@ section#gallery ul.filters
     -ms-flex-pack: center;
             justify-content: center;
 }
-section#gallery ul.filters li
+section#portfolio ul.filters li
 {
     display: block;
 }
-section#gallery ul.filters li a
+section#portfolio ul.filters li a
 {
     font-size: 20px;
     font-weight: bold;
@@ -6415,18 +6468,43 @@ section#gallery ul.filters li a
     color: #6f6f6f;
     background: #222;
 }
-section#gallery ul.filters li a.active
+section#portfolio ul.filters li a.active
 {
     color: #222 !important; 
     background: #e4ffba !important;
 }
-section#gallery ul.filters li a:hover
+section#portfolio ul.filters li a:hover
 {
     color: #222; 
     background: #ff6b93;
 }
+section#portfolio div.items-wrap
+{
+    position: relative;
 
-section#gallery div.items
+    padding: 20px;
+}
+@media screen and (max-width: 600px)
+{
+    section#portfolio div.items-wrap
+    {
+        padding: 10px;
+    }
+}
+section#portfolio div.items-wrap div.bg
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+section#portfolio div.items-wrap div.bg img
+{
+    position: absolute;
+}
+section#portfolio div.items
 {
     font-size: 0;
 
@@ -6436,7 +6514,7 @@ section#gallery div.items
     width:         calc(100% + 10px);
     margin: 0 0 0 -5px;
 }
-section#gallery div.items div.item
+section#portfolio div.items div.item
 {
     position: relative;
 
@@ -6444,13 +6522,35 @@ section#gallery div.items div.item
 
     width: -webkit-calc(33.33333333% - 10px);
     width:         calc(33.33333333% - 10px);
-    margin: 5px; 
+    margin: 5px;
+
+    cursor: pointer; 
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
 
     background: #222;
+    -webkit-box-shadow: inset 0 0 0 2px #222;
+            box-shadow: inset 0 0 0 2px #222;
+}
+section#portfolio div.items div.item:hover
+{
+    z-index: 10;
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+    -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+            transform: scale(1.1);
+
+    background: #f84b4b;
+    -webkit-box-shadow: 0 0 0 5px #222;
+            box-shadow: 0 0 0 5px #222;
 }
 @media screen and (max-width: 960px)
 {
-    section#gallery div.items div.item
+    section#portfolio div.items div.item
     {
         width: -webkit-calc(50% - 10px);
         width:         calc(50% - 10px);
@@ -6458,19 +6558,69 @@ section#gallery div.items div.item
 }
 @media screen and (max-width: 600px)
 {
-    section#gallery div.items div.item
+    section#portfolio div.items div.item
     {
         width: -webkit-calc(100% - 10px);
         width:         calc(100% - 10px);
     }
 }
-section#gallery div.items div.item img
+section#portfolio div.items div.item img
 {
     display: block;
 
     width: 100%;
 }
 
+section#me
+{
+    position: relative;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    min-height: 400px; 
+    padding: 20px;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+@media screen and (min-width: 800px)
+{
+    section#me
+    {
+        height: 75vh;
+        max-height: 800px;
+    }
+}
+@media screen and (max-width: 600px)
+{
+    section#me
+    {
+        padding: 10px;
+    }
+}
+section#me div.bg
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+section#me div.bg img
+{
+    width: 100%;
+    height: 100%;
+}
 section#me div.container
 {
     display: -webkit-box;
@@ -6499,7 +6649,6 @@ section#me div.container
             -ms-flex-direction: column;
     }
 }
-
 section#me img.photo
 {
     width: -webkit-calc(33.333333% - 5px);
@@ -6513,11 +6662,16 @@ section#me img.photo
         max-width: 400px;
     }
 }
-
 section#me div.column
 {
     width: -webkit-calc(66.666666% - 50px);
     width:         calc(66.666666% - 50px);
+}
+section#me div.column p
+{
+    font-weight: bold; 
+
+    color: #fff;
 }
 @media screen and (max-width: 600px)
 {

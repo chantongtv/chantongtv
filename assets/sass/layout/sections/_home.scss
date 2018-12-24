@@ -1,12 +1,38 @@
 // ====================================================================
 // Home
 // ====================================================================
-section#gallery {
+section#portfolio {
+	padding: 0;
+	margin: 0;
 
 	div.featured {
+		position: relative;
+		padding: 40px 20px 20px;
+		background: $chan-salmon;
+		@media screen and (max-width: 600px) {
+			padding: 20px 10px 10px;
+		}
+		div.bg {
+			position: absolute;
+			// background: red;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			img {
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+		}
 		div.video {
 			padding: 56.25% 0 0 0;
 			position: relative;
+			z-index: 1;
+			background: $chan-dark;
 
 			iframe {
 				position: absolute;
@@ -22,8 +48,12 @@ section#gallery {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin: 30px auto;
-		padding: 0;
+		background: $chan-salmon;
+		// margin: 30px auto;
+		// padding: 30px auto;
+		@media screen and (max-width: 600px) {
+			// margin: 10px auto;
+		}
 		li {
 			display: block;
 			a {
@@ -49,6 +79,26 @@ section#gallery {
 		}
 	}
 
+	div.items-wrap {
+		position: relative;
+		padding: 20px;
+		@media screen and (max-width: 600px) {
+			padding: 10px;
+		}
+		div.bg {
+			position: absolute;
+			// background: blue;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			img {
+				position: absolute;
+			}
+		}
+	}
+
 	div.items {
 		position: relative;
 		font-size: 0;
@@ -61,6 +111,28 @@ section#gallery {
 			background: $chan-dark;
 			display: inline-block;
 			margin: 5px;
+			box-shadow: inset 0 0 0 2px $chan-dark;
+			transform: scale(1);
+			cursor: pointer;
+
+			&._motion {
+				// background: darken($chan-orange, 10%);
+			}
+			&._2d {
+				// background: darken($chan-pink, 10%);
+			}
+			&._3d {
+				// background: darken($chan-salmon, 10%);
+			}
+
+
+			&:hover {
+				transform: scale(1.1);
+				background: $chan-red;
+				transition: all 0.3s ease;
+				z-index: 10;
+				box-shadow: 0 0 0 5px $chan-dark;
+			}
 
 			@media screen and (max-width: 960px) {
 				width: calc(50% - 10px);
@@ -79,6 +151,33 @@ section#gallery {
 }
 
 section#me {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	padding: 20px;
+	min-height: 400px;
+	// background: $chan-salmon;
+	@media screen and (min-width: 800px) {
+		height: 75vh;
+		max-height: 800px;
+	}
+	@media screen and (max-width: 600px) {
+		padding: 10px;
+	}
+	div.bg {
+		position: absolute;
+		// background: green;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
 	div.container {
 		display: flex;
 		align-items: center;
@@ -100,6 +199,10 @@ section#me {
 
 	div.column {
 		width: calc(66.666666% - 50px);
+		p {
+			color: #fff;
+			font-weight: bold;
+		}
 		@media screen and (max-width: 600px) {
 			width: 100%;
 		}

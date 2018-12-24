@@ -4814,17 +4814,17 @@ APP.controller.Home = {
 
     init : function () {
         this.filterItensGallery();
-        this.toggleMenu();
+        this.menu();
     },
 
     filterItensGallery : function () {
 
-        var $itens = $('section#gallery div.items').isotope({
+        var $itens = $('section#portfolio div.items').isotope({
             layoutMode: 'fitRows'
         });
 
         // filter items on button click
-        $('section#gallery ul.filters').on('click', 'a', function(event) {
+        $('section#portfolio ul.filters').on('click', 'a', function(event) {
             event.preventDefault();
 
             $(this).parents('ul').find('li a').removeClass('active')
@@ -4839,12 +4839,28 @@ APP.controller.Home = {
 
     },
 
-    toggleMenu : function () {
+    menu : function () {
         $('body').on('click', '.toggleMenu', function(event) {
             event.preventDefault();
             $(this).toggleClass('active');
             $(this).parent().toggleClass('active');
         });
+
+        $('body').on('click', 'nav#main a', function(event) {
+            event.preventDefault();
+            $('.toggleMenu, header div.wrap').toggleClass('active');
+
+            var hash = $(this).attr('href')
+
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 400, function(){
+                // window.location.hash = hash;
+            });
+            
+        });
+
+
     },
 
 };

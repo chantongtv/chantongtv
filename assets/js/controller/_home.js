@@ -26,8 +26,6 @@ APP.controller.Home = {
 
             var filterValue = $(this).attr('href');
 
-            console.log(filterValue)
-
             $itens.isotope({ filter: filterValue });
         });
 

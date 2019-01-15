@@ -2,11 +2,14 @@
 // Header
 // ====================================================================
 header {
-	height: 100px;
+	height: 80px;
 	border-bottom: 4px solid $chan-dark;
 	background-color: $chan-red;
-	position: relative;
-	z-index: 10;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	width: 100%;
 
 	@media screen and (max-width: 600px) {
 		height: 80px;
@@ -49,7 +52,7 @@ header {
 			@media screen and (max-width: 600px) {
 				display: block;
 				position: fixed;
-				z-index: 3;
+				z-index: 50;
 				// background: red;
 				width: 25px;
 				height: 26px;
@@ -174,10 +177,10 @@ header {
 
 	a.logo {
 		display: block;
-		width: 60px;
+		width: 40px;
 		position: absolute;
 		top: 18px;
-		left: calc(50% - 30px);
+		left: calc(50% - 20px);
 		z-index: 1;
 
 		@media screen and (max-width: 600px) {

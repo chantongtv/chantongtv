@@ -77,9 +77,10 @@
 </head>
 
 <body>
+
     <header>
         <div class="container">
-            <a href="#" class="logo"><img src="/assets/img/logo.png" alt=""></a>
+            <a href="#hero" class="logo"><img src="/assets/img/logo.png" alt=""></a>
             <div class="wrap">
                 <a href="#" class="toggleMenu">
                     <span></span>
@@ -105,23 +106,28 @@
             </div>
         </div>
     </header>
+    <section id="hero">
+        <div class="fixed" data-stellar-ratio="0.25" data-stellar-vertical-offset="80">
+            <video autoplay loop muted src="/assets/video/big_buck_bunny_720p_20mb.mp4"></video>
+        </div>
+    </section>
     <section id="portfolio">
         <div class="featured">
+            <ul class="filters" id="gallery">
+                <li><a href="._motion">Motion</a></li>
+                <li><a href="._2d">2D</a></li>
+                <li><a href="._3d">3D</a></li>
+            </ul>
+
             <div class="bg">
                 <img src="/assets/img/bg1.svg" alt="" class="bg1">
             </div>
             <div class="container">
-                <div class="video" style="">
-                    <iframe src="https://player.vimeo.com/video/251800068?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                <div class="video">
+                    <!-- <iframe src="https://player.vimeo.com/video/251800068?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
                 </div>
             </div>
         </div>
-        <ul class="filters" id="gallery">
-            <li><a class="active" href="*">All</a></li>
-            <li><a href="._motion">Motion</a></li>
-            <li><a href="._2d">2D</a></li>
-            <li><a href="._3d">3D</a></li>
-        </ul>
 
         <div class="items-wrap">
             <div class="bg">
@@ -131,61 +137,14 @@
             </div>
             <div class="container">
                 <div class="items">
-                    <div class="item _3d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _2d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _2d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _motion">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _3d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _motion">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _2d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _3d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _motion">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _2d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _3d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
-                    <div class="item _2d">
-                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
-                        <a href="#"></a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
 
     </section>
     <section id="me">
-        <div class="bg">
+        <div class="bg" data-stellar-ratio="1.25" data-stellar-vertical-offset="-100">
             <img src="/assets/img/bg5.svg" alt="" class="bg5">
         </div>
         <div class="container">
@@ -206,7 +165,11 @@
         <a href="#"><i class="fab fa-behance"></i></a>
     </footer>
 
+    <div id="loading"></div>
+
     <script src="https://player.vimeo.com/api/player.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="/assets/js/scripts.js"></script>
 </body>
 

@@ -5895,10 +5895,13 @@ readers do not read off random characters that represent icons */
 
 header
 {
-    position: relative;
-    z-index: 10; 
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
 
-    height: 100px;
+    width: 100%; 
+    height: 80px;
 
     border-bottom: 4px solid #222;
     background-color: #f84b4b;
@@ -5986,7 +5989,7 @@ header div.wrap a.toggleMenu
     header div.wrap a.toggleMenu
     {
         position: fixed;
-        z-index: 3;
+        z-index: 50;
         top: 25px;
         right: 20px;
 
@@ -6185,12 +6188,12 @@ header a.logo
     position: absolute;
     z-index: 1; 
     top: 18px;
-    left: -webkit-calc(50% - 30px);
-    left:         calc(50% - 30px);
+    left: -webkit-calc(50% - 20px);
+    left:         calc(50% - 20px);
 
     display: block;
 
-    width: 60px;
+    width: 40px;
 }
 @media screen and (max-width: 600px)
 {
@@ -6270,6 +6273,10 @@ body
     min-height:         calc(100vh);
 
     background: #fccdbd;
+}
+body.loading
+{
+    overflow: hidden;
 }
 
 ul,
@@ -6373,6 +6380,83 @@ section
             align-items: center;
 }
 
+div#loading
+{
+    position: fixed;
+    z-index: 100000; 
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: #fccdbd;
+    background-image: url('../img/logo.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+section#hero
+{
+    position: relative;
+
+    overflow: hidden; 
+
+    width: 100vw;
+    height: -webkit-calc(100vh - 60px);
+    height:         calc(100vh - 60px);
+    margin-top: 80px;
+}
+@media screen and (max-width: 768px)
+{
+    section#hero
+    {
+        height: 56.25vw;
+    }
+}
+section#hero div.fixed
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    overflow: hidden; 
+
+    width: 100%;
+    height: 100%;
+}
+section#hero div.fixed:after
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+
+    background: rgba(0, 0, 255, .1);
+}
+section#hero div.fixed video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    -o-object-fit: cover;
+       object-fit: cover;
+}
+
 section#portfolio
 {
     margin: 0; 
@@ -6382,7 +6466,7 @@ section#portfolio div.featured
 {
     position: relative;
 
-    padding: 40px 20px 20px;
+    padding: 0 20px 20px;
 
     background: #f66;
 }
@@ -6390,7 +6474,7 @@ section#portfolio div.featured
 {
     section#portfolio div.featured
     {
-        padding: 20px 10px 10px;
+        padding: 0 10px 10px;
     }
 }
 section#portfolio div.featured div.bg
@@ -6416,6 +6500,8 @@ section#portfolio div.featured div.video
     position: relative;
     z-index: 1;
 
+    overflow: hidden; 
+
     padding: 56.25% 0 0 0;
 
     background: #222;
@@ -6426,17 +6512,27 @@ section#portfolio div.featured div.video iframe
     top: 0;
     left: 0;
 
+    display: none; 
+
     width: 100%;
     height: 100%;
 }
+section#portfolio div.featured div.video iframe.active
+{
+    display: block;
+}
 section#portfolio ul.filters
 {
+    position: relative;
+    z-index: 10;
+    top: -20px; 
+
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
 
-    background: #f66; 
+    margin: 0 0 20px;
 
     -webkit-box-align: center;
     -webkit-align-items: center;
@@ -6579,8 +6675,9 @@ section#me
     display: -webkit-flex;
     display: -ms-flexbox;
     display:         flex;
+    overflow: hidden; 
 
-    min-height: 400px; 
+    min-height: 400px;
     padding: 20px;
 
     -webkit-box-align: center;
@@ -6615,6 +6712,13 @@ section#me div.bg
 
     width: 100%;
     height: 100%;
+}
+@media screen and (max-width: 600px)
+{
+    section#me div.bg
+    {
+        top: 0 !important;
+    }
 }
 section#me div.bg img
 {
@@ -6653,19 +6757,20 @@ section#me img.photo
 {
     width: -webkit-calc(33.333333% - 5px);
     width:         calc(33.333333% - 5px);
+    max-width: 300px;
 }
 @media screen and (max-width: 600px)
 {
     section#me img.photo
     {
         width: 100%;
-        max-width: 400px;
     }
 }
 section#me div.column
 {
-    width: -webkit-calc(66.666666% - 50px);
-    width:         calc(66.666666% - 50px);
+    width: -webkit-calc(100% - 50px);
+    width:         calc(100% - 50px);
+    padding-left: 50px;
 }
 section#me div.column p
 {
@@ -6678,5 +6783,6 @@ section#me div.column p
     section#me div.column
     {
         width: 100%;
+        padding-left: 0;
     }
 }

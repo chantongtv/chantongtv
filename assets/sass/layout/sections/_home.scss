@@ -1,16 +1,60 @@
 // ====================================================================
 // Home
 // ====================================================================
+
+section#hero {
+	width: 100vw;
+	height: calc(100vh - 60px);
+	position: relative;
+	margin-top: 80px;
+	overflow: hidden;
+
+	@media screen and (max-width: 768px) {
+		height: 56.25vw;
+	}
+
+	div.fixed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		// background: blue;
+		overflow: hidden;
+
+		&:after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(blue, 0.1);
+			display: block;
+		}
+
+		video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
 section#portfolio {
 	padding: 0;
 	margin: 0;
 
 	div.featured {
 		position: relative;
-		padding: 40px 20px 20px;
+		padding: 0 20px 20px;
 		background: $chan-salmon;
 		@media screen and (max-width: 600px) {
-			padding: 20px 10px 10px;
+			padding: 0 10px 10px;
 		}
 		div.bg {
 			position: absolute;
@@ -33,6 +77,8 @@ section#portfolio {
 			position: relative;
 			z-index: 1;
 			background: $chan-dark;
+			overflow: hidden;
+			// display: none;
 
 			iframe {
 				position: absolute;
@@ -40,6 +86,11 @@ section#portfolio {
 				left: 0;
 				width: 100%;
 				height: 100%;
+				display: none;
+
+				&.active {
+					display: block;
+				}
 			}
 		}
 	}
@@ -48,7 +99,11 @@ section#portfolio {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: $chan-salmon;
+		position: relative;
+		z-index: 10;
+		margin: 0 0 20px;
+		top: -20px;
+		// background: $chan-salmon;
 		// margin: 30px auto;
 		// padding: 30px auto;
 		@media screen and (max-width: 600px) {
@@ -157,6 +212,7 @@ section#me {
 	position: relative;
 	padding: 20px;
 	min-height: 400px;
+	overflow: hidden;
 	// background: $chan-salmon;
 	@media screen and (min-width: 800px) {
 		height: 75vh;
@@ -172,6 +228,9 @@ section#me {
 		left: 0;
 		width: 100%;
 		height: 100%;
+		@media screen and (max-width: 600px) {
+			top: 0 !important;
+		}
 
 		img {
 			width: 100%;
@@ -190,21 +249,23 @@ section#me {
 
 	img.photo {
 		width: calc(33.333333% - 5px);
+		max-width: 300px;
 
 		@media screen and (max-width: 600px) {
 			width: 100%;
-			max-width: 400px;
 		}
 	}
 
 	div.column {
-		width: calc(66.666666% - 50px);
+		width: calc(100% - 50px);
+		padding-left: 50px;
 		p {
 			color: #fff;
 			font-weight: bold;
 		}
 		@media screen and (max-width: 600px) {
 			width: 100%;
+			padding-left: 0;
 		}
 	}	
 }

@@ -36,6 +36,13 @@ aside#itemGallery {
 		z-index: 1;
 		transition: all 0.3s ease;
 
+		@media screen and (max-width: 768px) {
+			right: -100vw;
+			top: auto;
+			margin: 0;
+			position: absolute;
+		}
+
 	}
 
 	&.active {
@@ -46,6 +53,10 @@ aside#itemGallery {
 		}
 		div.content {
 			top: 0;
+			@media screen and (max-width: 768px) {
+				right: 0;
+				top: auto;
+			}
 		}
 
 	}

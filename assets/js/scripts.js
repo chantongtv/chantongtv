@@ -15889,13 +15889,13 @@ APP.controller.Home = {
             $(this).parent().toggleClass('active');
         });
 
-        $('body').on('click', 'nav#main a, a.logo', function(event) {
+        $('body').on('click', 'nav#main a, a.logo, a.scrollBottom', function(event) {
             event.preventDefault();
             $('.toggleMenu, header#main div.wrap').removeClass('active');
 
             var hash = $(this).attr('href')
 
-            $('html, body').animate({
+            $('html').animate({
                 scrollTop: $(hash).offset().top - 80
             }, 400, function(){
                 // window.location.hash = hash;

@@ -3,7 +3,7 @@
 // ====================================================================
 
 section#hero {
-	width: 100vw;
+	width: 100%;
 	height: calc(100vh - 60px);
 	position: relative;
 	margin-top: 80px;
@@ -29,8 +29,48 @@ section#hero {
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: rgba(blue, 0.1);
 			display: block;
+			background-image: url('../img/reticula.png');
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			opacity: 0.15;
+		}
+
+		h1 {
+			position: absolute;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: calc(100% - 80px);
+			top: 0;
+			left: 0;
+			z-index: 1;
+			color: #fff;
+			line-height: 100%;
+			text-shadow: 2px 2px rgba(#000, 0.2);
+			@media screen and (max-width: 768px) {
+				height: 100%;
+			}
+
+			span {
+				font-size: 120px;
+				line-height: 100%;
+				@media screen and (max-width: 768px) {
+					font-size: 15vw;
+				}
+				&:first-of-type {
+					font-weight: bold;
+				}
+				&:last-of-type {
+					font-size: 40px;
+					@media screen and (max-width: 768px) {
+						font-size: 5vw;
+					}
+				}
+			}
 		}
 
 		video {
@@ -42,6 +82,19 @@ section#hero {
 			height: 100%;
 			object-fit: cover;
 		}
+
+		a.scrollBottom {
+			position: absolute;
+			bottom: 20px;
+			font-size: 60px;
+			z-index: 2;
+			left: calc(50% - 26px);
+			color: #fff;
+			text-shadow: 2px 2px rgba(#000, 0.2);
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
+		}
 	}
 }
 
@@ -52,10 +105,10 @@ section#portfolio {
 
 	div.featured {
 		position: relative;
-		padding: 30px 20px 20px;
+		padding: 40px 20px 20px;
 		background: $chan-salmon;
 		@media screen and (max-width: 600px) {
-			padding: 30px 10px 10px;
+			padding: 40px 10px 10px;
 		}
 		div.bg {
 			position: absolute;
@@ -125,7 +178,7 @@ section#portfolio {
 				font-size: 20px;
 				background: $chan-dark;
 				color: lighten($chan-dark, 30);
-				padding: 5px 15px;
+				padding: 7px 15px;
 				font-weight: bold;
 				text-transform: uppercase;
 				transition: all 0.3s ease;

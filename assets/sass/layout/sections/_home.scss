@@ -48,13 +48,14 @@ section#hero {
 section#portfolio {
 	padding: 0;
 	margin: 0;
+	position: relative;
 
 	div.featured {
 		position: relative;
-		padding: 0 20px 20px;
+		padding: 30px 20px 20px;
 		background: $chan-salmon;
 		@media screen and (max-width: 600px) {
-			padding: 0 10px 10px;
+			padding: 30px 10px 10px;
 		}
 		div.bg {
 			position: absolute;
@@ -99,13 +100,21 @@ section#portfolio {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		position: relative;
+		position: absolute;
 		z-index: 10;
 		margin: 0 0 20px;
 		top: -20px;
+		width: 320px;
+		left: calc(50% - 160px);
+		z-index: 1000;
 		// background: $chan-salmon;
 		// margin: 30px auto;
 		// padding: 30px auto;
+
+		&.fixed {
+			position: fixed;
+			top: 80px;
+		}
 		@media screen and (max-width: 600px) {
 			// margin: 10px auto;
 		}
@@ -169,6 +178,23 @@ section#portfolio {
 			box-shadow: inset 0 0 0 2px $chan-dark;
 			transform: scale(1);
 			cursor: pointer;
+			overflow: hidden;
+			background-position: center center;
+			background-size: cover;
+			background-repeat: no-repeat;
+
+			&:before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				display: block;
+				background: rgba(#000, 0.75);
+				opacity: 0;
+				transition: all ease 0.3s;
+			}
 
 			&._motion {
 				// background: darken($chan-orange, 10%);
@@ -180,13 +206,38 @@ section#portfolio {
 				// background: darken($chan-salmon, 10%);
 			}
 
+			span {
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 18px;
+				width: 100%;
+				height: 100%;
+				color: #fff;
+				display: block;
+				z-index: 1000;
+				padding: 10px;
+				transform: translateX(-100%);
+				opacity: 0;
+				font-weight: bold;
+				transition: all ease 0.3s;
+			}
+
 
 			&:hover {
 				transform: scale(1);
-				background: $chan-red;
 				transition: all 0.3s ease;
 				z-index: 10;
 				box-shadow: 0 0 0 5px $chan-dark;
+
+				&:before {
+					opacity: 1;
+				}
+
+				span {
+					opacity: 1;
+					transform: translateX(0%);
+				}
 			}
 
 			@media screen and (max-width: 960px) {

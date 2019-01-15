@@ -1,12 +1,12 @@
 // ====================================================================
 // Header
 // ====================================================================
-header {
+header#main {
 	height: 80px;
 	border-bottom: 4px solid $chan-dark;
 	background-color: $chan-red;
 	position: fixed;
-	z-index: 1000;
+	z-index: 10000;
 	top: 0;
 	left: 0;
 	width: 100%;

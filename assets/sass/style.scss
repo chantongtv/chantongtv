@@ -41,11 +41,12 @@
 // -------------------------------------
 // CORE
 @import "layout/core/_header";
-@import "layout/core/_sidebar";
 @import "layout/core/_footer";
+@import "layout/core/_itemGallery";
 @import "layout/core/_objects";
 // SECTIONS
 // @import "layout/sections/_checkConnection";
 // @import "layout/sections/_erro";
 // @import "layout/sections/_main";
 @import "layout/sections/_home";
+@import "layout/sections/_admin";

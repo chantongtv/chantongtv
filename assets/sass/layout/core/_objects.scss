@@ -12,7 +12,7 @@ body {
 	position: relative;
 	overflow-x: hidden;
 
-	&.loading {
+	&.loading, &.lockScroll {
 		overflow: hidden;
 	}
 

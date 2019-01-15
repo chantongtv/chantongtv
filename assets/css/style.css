@@ -6293,17 +6293,17 @@ aside#itemGallery div.overlay
 }
 aside#itemGallery div.content
 {
-    position: absolute;
+    position: relative;
     z-index: 1;
-    top: 0;
-    right: -800px;
+    top: -100vh;
 
     overflow: auto;
 
     width: -webkit-calc(100% - 40px);
     width:         calc(100% - 40px);
-    max-width: 800px;
+    max-width: 960px;
     height: 100vh;
+    margin: 0 auto;
 
     -webkit-transition: all .3s ease;
          -o-transition: all .3s ease;
@@ -6323,7 +6323,7 @@ aside#itemGallery.active div.overlay
 }
 aside#itemGallery.active div.content
 {
-    right: 0;
+    top: 0;
 }
 
 body

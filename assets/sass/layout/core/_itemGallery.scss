@@ -24,11 +24,12 @@ aside#itemGallery {
 	}
 
 	div.content {
-		position: absolute;
-		max-width: 800px;
+		position: relative;
+		max-width: 960px;
 		width: calc(100% - 40px);
-		right: -800px;
-		top: 0;
+		// right: 0;
+		margin: 0 auto;
+		top: -100vh;
 		background: $chan-skin;
 		height: 100vh;
 		overflow: auto;
@@ -44,7 +45,7 @@ aside#itemGallery {
 			right: 0;
 		}
 		div.content {
-			right: 0;
+			top: 0;
 		}
 
 	}

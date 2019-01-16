@@ -28,8 +28,6 @@ APP.core.Main = {
 |--------------------------------------------------------------------------
 */
 
-
-
 var config = {
     apiKey: "AIzaSyBORHWLZMvNhezuRfffymO7ppIgR07y1Mc",
     authDomain: "chantongtv-portfolio.firebaseapp.com",

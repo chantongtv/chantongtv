@@ -24,12 +24,8 @@ APP.controller.Home = {
             hideDistantElements: false,
         });
 
-
-
-        setTimeout(function() {
-            $('#loading').fadeOut();
-            $('body').removeClass('loading');                
-        }, 1000);
+        $('#loading').fadeOut();
+        $('body').removeClass('loading');                
     },
 
     filterItens : function () {
@@ -100,17 +96,43 @@ APP.controller.Home = {
             APP.controller.Home.openItemGallery(idItem);
         });
 
-        $('body').on('click', 'aside#itemGallery div.overlay', function(event) {
+        $('body').on('click', 'aside#itemGallery div.overlay, aside#itemGallery a.close', function(event) {
             event.preventDefault();
             $('aside#itemGallery').removeClass('active');
+            $('aside#itemGallery div.content').html("");
             $('body').removeClass('lockScroll');
-            setTimeout(function() {
-                $('aside#itemGallery div.content').html("");
-            }, 300);
         });
     },
 
-    openItemGallery : function () {
+    openItemGallery : function (idItem) {
+
+        var dataItem = data["gallery"][idItem];
+        var content = $('aside#itemGallery div.content');
+
+        content.append(`
+            <a class="close"><i class="fas fa-times"></i></a>
+            <h2>${dataItem.name}</h2>
+            <h3>
+                ${dataItem.category.map(function(cat, index) {
+                    return cat + (index === dataItem.category.length - 1 ? "" : ", ");
+                }).join("")}
+            </h3>
+            ${typeof(dataItem.desc) === "undefined" || dataItem.desc === "" ? "" : `<div class="desc">${dataItem.desc}</div>`}
+            <div class="media">
+                ${dataItem.media.map(function(media, index) {
+                    if (media.type === "image") {
+                        return `<img data-order="${media.order}" src="${media.url}" />`;
+                    } else if (media.type === "video") {
+                        return `<video controls data-order="${media.order}" src="${media.url}"></video>`;
+                    } else if (media.type === "embed") {
+                        return `<div data-order="${media.order}" class="embed">${media.url}</div>`;
+                    }
+                }).join("")}
+            </div>
+        `)
+
+        tinysort('aside#itemGallery>div.content>div.media>*',{attr:'data-order'});
+
         $('aside#itemGallery').addClass('active');
         $('body').addClass('lockScroll');
     },
@@ -126,25 +148,35 @@ APP.controller.Home = {
             // Vídeos em destaque
             var videoEl = $('.featured .video');
             $.each(data['featuredVideos'], function(index, val) {
+                var vimeoId = val.match(/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i);
                 videoEl.append(`
-                    <iframe class="${index}" src="https://player.vimeo.com/video/${val}?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <iframe class="${index}" src="https://player.vimeo.com/video/${vimeoId[1]}?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 `)
             });
 
             // Itens da galeria
             var wrap = $('.items-wrap .items');
             $.each(data['gallery'], function(index, val) {
+                var categories = "";
+                $.each(val.category, function(i, cat) {
+                    categories += " _" + cat;
+                });
                 wrap.append(`
-                    <div data-item="${val.id}" class="item ${val.category}" style="background-image: url(${val.thumb})">
+                    <div data-order="${val.order}" data-id="${index}" class="item${categories}" style="background-image: url(${val.thumb})">
+                        <span>${val.name}</span>
                         <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
                     </div>
                 `)
             });
 
+            tinysort('.items-wrap .items .item',{attr:'data-order'});
+
         }).then(function() {
 
-            // Setup dos plugins
-            APP.controller.Home.setup();
+            // Setup dos plugins e fadeout do loading
+            setTimeout(function() {
+                APP.controller.Home.setup();
+            }, 1000);
 
         })
     },

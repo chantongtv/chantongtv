@@ -76,23 +76,108 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
-<body>
+<body class="loading">
 
-    <!-- <div id="loading"></div> -->
+    <div id="loading"></div>
     
     <section id="login">
         <form action="">
             <img src="/assets/img/logo.png" alt="">
-            <input type="text" placeholder="Email">
-            <input type="password" placeholder="Senha">
+            <input id="email" type="text" placeholder="Email">
+            <input id="password" type="password" placeholder="Senha">
             <input type="submit" value="Fazer login">
         </form>
+    </section>
+
+    <section id="admin">
+        <header>
+            <img src="/assets/img/logo.png" alt="">
+            <h1>
+                Administrador: Chan Tong - Motion Designer | 2D Animator
+            </h1>
+            <a href="javascript:firebase.auth().signOut()" class="sign-out">Sair <i class="fas fa-sign-out-alt"></i></a>
+        </header>
+        <div id="main" class="container">
+            <div id="heroVideo" class="box">
+                <h2>
+                    Vídeo principal do topo
+                    <i class="fas fa-chevron-down"></i>
+                </h2>
+                <div class="content">
+                    <div class="video">
+                        <video controls src=""></video>
+                    </div>
+                    <div class="actions">
+                        <label for="uploadHeroVideo">Substituir e subir novo vídeo</label>
+                        <input id="uploadHeroVideo" accept=".mp4" size="10240" type="file">
+                    </div>
+                </div>
+            </div>
+            <div id="featuredVideos" class="box">
+                <h2>
+                    Vídeos em destaque na galeria
+                    <i class="fas fa-chevron-down"></i>
+                </h2>
+                <div class="content">
+                    <div class="items">
+                        <div class="item 2d">
+                            <h3>2D</h3>
+                            <div class="video">
+                                <img src="/assets/img/ratio16x9.png" alt="">
+                                <iframe src="" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                            <div class="actions">
+                                <a href="#">Alterar URL do vídeo (Vimeo)</a>
+                            </div>
+                        </div>
+                        <div class="item motion">
+                            <h3>Motion</h3>
+                            <div class="video">
+                                <img src="/assets/img/ratio16x9.png" alt="">
+                                <iframe src="" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                            <div class="actions">
+                                <a href="#">Alterar URL do vídeo (Vimeo)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="gallery" class="box">
+                <h2>
+                    Galeria
+                    <i class="fas fa-chevron-down"></i>
+                </h2>            
+                <div class="content">
+                    <div class="items">
+                        <!-- <div data-order="" data-id="" class="item" style="background-image: url(https://media.giphy.com/media/5xtDarKaxbNRjKhGe2c/giphy.gif)">
+                            <span>${val.name}</span>
+                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                        </div>  -->                         
+                    </div>
+                    <div class="actions">
+                        <a href="#">Adicionar novo projeto</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div id="me" class="box">
+                <h2>
+                    Sobre
+                    <i class="fas fa-chevron-down"></i>
+                </h2>
+                <div class="content">
+                    
+                </div>
+            </div> -->
+        </div>
     </section>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="/assets/js/scripts.js"></script>
+    <script src="/assets/js/vendor/jquery.dragsort.js"></script>
 </body>
 
 </html>

@@ -68,10 +68,10 @@ var paths = {
 		'assets/js/vendor/jquery.mask.js',
 		'assets/js/vendor/isotope.pkgd.min.js',
 		'assets/js/vendor/jquery.stellar.min.js',
+		'assets/js/vendor/tinysort.js',
 
 		//'assets/js/vendor/jquery.mCustomScrollbar.js',
 		//'assets/js/vendor/jquery.center.js',
-		//'assets/js/vendor/tinysort.min.js',
 		//'assets/js/vendor/nouislider.js',
 		//'assets/js/vendor/formatCases.js',
 		//'assets/js/vendor/isMobile.js',
@@ -95,6 +95,7 @@ var paths = {
 		'assets/js/vendor/jquery.mask.js',
 		'assets/js/vendor/isotope.pkgd.min.js',
 		'assets/js/vendor/jquery.stellar.min.js',
+		'assets/js/vendor/tinysort.js',
 
 		//System
 		'assets/js/core/_nameSpace.js',

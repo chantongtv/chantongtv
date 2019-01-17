@@ -135,7 +135,8 @@ header#main {
 			height: auto;
 		}
 		ul {
-			max-width: 300px;
+			// max-width: 300px;
+			max-width: 140px;
 			@media screen and (max-width: 600px) {
 				flex-direction: column;
 

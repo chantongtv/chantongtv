@@ -6218,8 +6218,8 @@ readers do not read off random characters that represent icons */
     }
     77.7%
     {
-        -webkit-transform: skewX(.39062deg) skewY(.39062deg);
-                transform: skewX(.39062deg) skewY(.39062deg);
+        -webkit-transform: skewX(.39063deg) skewY(.39063deg);
+                transform: skewX(.39063deg) skewY(.39063deg);
     }
     88.8%
     {
@@ -6264,8 +6264,8 @@ readers do not read off random characters that represent icons */
     }
     77.7%
     {
-        -webkit-transform: skewX(.39062deg) skewY(.39062deg);
-                transform: skewX(.39062deg) skewY(.39062deg);
+        -webkit-transform: skewX(.39063deg) skewY(.39063deg);
+                transform: skewX(.39063deg) skewY(.39063deg);
     }
     88.8%
     {
@@ -10028,7 +10028,7 @@ header#main nav#main
 }
 header#main nav#main ul
 {
-    max-width: 300px;
+    max-width: 140px;
 }
 @media screen and (max-width: 600px)
 {

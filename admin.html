@@ -127,7 +127,7 @@
                                 <iframe src="" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                             <div class="actions">
-                                <a href="#">Alterar URL do vídeo (Vimeo)</a>
+                                <a class="changeUrlFeaturedVideos" data-category="2d" href="#">Alterar URL do vídeo (Vimeo)</a>
                             </div>
                         </div>
                         <div class="item motion">
@@ -137,7 +137,7 @@
                                 <iframe src="" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                             </div>
                             <div class="actions">
-                                <a href="#">Alterar URL do vídeo (Vimeo)</a>
+                                <a class="changeUrlFeaturedVideos" data-category="motion" href="#">Alterar URL do vídeo (Vimeo)</a>
                             </div>
                         </div>
                     </div>
@@ -168,6 +168,13 @@
             </div> -->
         </div>
     </section>
+
+    <div class="modal-wrap" id="changeFeaturedVideoModal">
+        <div class="modal">
+            <a href="" class="close"></a>
+            <div class="wrap"></div>
+        </div>        
+    </div>
 
     <script src="https://player.vimeo.com/api/player.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>

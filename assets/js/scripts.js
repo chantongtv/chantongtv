@@ -5282,6 +5282,7 @@ APP.controller.Admin = {
         APP.controller.Admin.reorderGallery();
 
         APP.controller.Admin.actionsHeroVideo();
+        APP.controller.Admin.actionsFeaturedVideos();
 
         $('#loading').fadeOut();
         $('body').removeClass('loading');  
@@ -5315,7 +5316,7 @@ APP.controller.Admin = {
         $('body').addClass('loading');
 
         firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-            
+
         });
     },
 
@@ -5413,12 +5414,59 @@ APP.controller.Admin = {
     },
 
     // Vídeos em destaque na Galeria
+    actionsFeaturedVideos : function () {
+        $('body').on('click', 'div#featuredVideos a.changeUrlFeaturedVideos', function(event) {
+            event.preventDefault();
+            var category = $(this).data('category');
+            APP.controller.Admin.openModalFeaturedVideo(category);
+        });
+
+        $('body').on('click', 'div#changeFeaturedVideoModal', function(event) {
+            event.preventDefault();
+            if ($(event.originalEvent.target).hasClass('modal-wrap')) {
+                $('#changeFeaturedVideoModal').fadeOut(300, function() {
+                    $('#changeFeaturedVideoModal div.wrap').html("");
+                });
+            }
+        });
+        $('body').on('click', 'div#changeFeaturedVideoModal a.changeFeaturedVideo', function(event) {
+            event.preventDefault();
+            var category = $(this).data('category');
+            var url = $("div#changeFeaturedVideoModal input").val()
+            APP.controller.Admin.changeFeaturedVideo(url, category);
+        });
+    },
+    openModalFeaturedVideo : function (category) {
+        database.ref('/featuredVideos/'+category).once('value').then(function(snapshot) {
+            var urlVideo = "";
+            urlVideo = snapshot.val();
+            $('#changeFeaturedVideoModal div.wrap').html("");
+            $('#changeFeaturedVideoModal div.wrap').append(`
+                <h3>Alterar URL do vídeo em destaque da categoria ${category}</h3>
+                <input type="text" value="${urlVideo}" />
+                <a href="#" class="changeFeaturedVideo" data-category="${category}">Alterar URL</a>
+            `)
+            $('#changeFeaturedVideoModal').css("display", "flex").hide().fadeIn();
+        });
+
+        
+    },
+    changeFeaturedVideo : function (url, category) {
+        database.ref('/featuredVideos/'+category).set(url);
+
+        var vimeoId = url.match(/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i);
+        $('section#admin div#featuredVideos div.item.'+category + ' iframe').attr('src', `https://player.vimeo.com/video/${vimeoId[1]}?title=0&byline=0&portrait=0`);
+
+        $('#changeFeaturedVideoModal').fadeOut(300, function() {
+            $('#changeFeaturedVideoModal div.wrap').html("");
+        });
+    },
 
     // Galeria
     actionsGallery : function () {
         $('body').on('click', 'div#gallery div.items div.item', function(event) {
             event.preventDefault();
-            // alert('opa')
+            
         });
     },
     reorderGallery : function () {

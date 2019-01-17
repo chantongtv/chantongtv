@@ -19,15 +19,6 @@
 @import "base/_settings";
 @import "base/_reset";
 @import "base/_base";
-//@import "base/_sprites";
-
-// -------------------------------------
-// MODULES
-// -------------------------------------
-@import "modules/_modal";
-// @import "modules/_loading";
-// @import "modules/_form";
-// @import "modules/_gradient";
 
 // -------------------------------------
 // VENDOR
@@ -45,9 +36,7 @@
 @import "layout/core/_footer";
 @import "layout/core/_itemGallery";
 @import "layout/core/_objects";
+
 // SECTIONS
-// @import "layout/sections/_checkConnection";
-// @import "layout/sections/_erro";
-// @import "layout/sections/_main";
 @import "layout/sections/_home";
 @import "layout/sections/_admin";

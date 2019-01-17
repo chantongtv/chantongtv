@@ -5298,7 +5298,7 @@ APP.controller.Admin = {
             } else {
                 $('section#login').hide();
                 $('section#admin').show();
-                APP.controller.Admin.fillContentFirebase();                
+                APP.controller.Admin.fillContentFirebase();
             }
         });     
     },
@@ -5315,8 +5315,7 @@ APP.controller.Admin = {
         $('body').addClass('loading');
 
         firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
-            $('section#login').hide();
-            APP.controller.Admin.fillContentFirebase();            
+            
         });
     },
 

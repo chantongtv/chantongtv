@@ -5,6 +5,8 @@
 */
 var data;
 var $itens;
+var gModal = $('#editAddGalleryItemModal');
+var descTextbox;
 APP.controller.Admin = {
 
     init : function () {
@@ -20,6 +22,8 @@ APP.controller.Admin = {
 
         APP.controller.Admin.actionsHeroVideo();
         APP.controller.Admin.actionsFeaturedVideos();
+        APP.controller.Admin.actionsGallery();
+        APP.controller.Admin.actionsGalleryItem();
 
         $('#loading').fadeOut();
         $('body').removeClass('loading');  
@@ -87,6 +91,8 @@ APP.controller.Admin = {
                     <div data-order="${val.order}" data-id="${index}" class="item" style="background-image: url(${val.thumb})">
                         <span>${val.name}</span>
                         <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                        <a href="#" class="editItem"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="deleteItem"><i class="fas fa-trash"></i></a>
                     </div>
                 `)
             });
@@ -150,6 +156,116 @@ APP.controller.Admin = {
 
     },
 
+    uploadGalleryThumbImage : function (file) {
+
+        $('#loading').fadeIn();
+        $('body').addClass('loading');
+
+        console.log(file);
+
+        var uploadTask = firebase.storage().ref().child('gallery/thumbs/' + moment().format("X") + "_" + file.name).put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, function(error) {
+          // Handle unsuccessful uploads
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+
+            gModal.find('div.thumbnail div.ratio').css('background-image', 'url(' + url + ')');
+            
+            $('#loading').fadeOut();
+            $('body').removeClass('loading');
+
+          });
+        });
+
+    },
+    uploadGalleryItemVideo : function (file, indexItem) {
+
+        $('#loading').fadeIn();
+        $('body').addClass('loading');
+
+        console.log(file);
+
+        var uploadTask = firebase.storage().ref().child('gallery/videos/' + moment().format("X") + "_" + file.name).put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, function(error) {
+          // Handle unsuccessful uploads
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+            
+            $(gModal.find('div.item')[indexItem]).find('video').attr('src', url);
+
+            $('#loading').fadeOut();
+            $('body').removeClass('loading');
+
+          });
+        });
+
+    },
+    uploadGalleryItemImage : function (file, indexItem) {
+
+        $('#loading').fadeIn();
+        $('body').addClass('loading');
+
+        console.log(file);
+
+        var uploadTask = firebase.storage().ref().child('gallery/videos/' + moment().format("X") + "_" + file.name).put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, function(error) {
+          // Handle unsuccessful uploads
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+
+            $(gModal.find('div.item')[indexItem]).find('> img').attr('src', url)
+            
+            $('#loading').fadeOut();
+            $('body').removeClass('loading');
+
+          });
+        });
+
+    },
+
+
     // Vídeos em destaque na Galeria
     actionsFeaturedVideos : function () {
         $('body').on('click', 'div#featuredVideos a.changeUrlFeaturedVideos', function(event) {
@@ -184,9 +300,7 @@ APP.controller.Admin = {
                 <a href="#" class="changeFeaturedVideo" data-category="${category}">Alterar URL</a>
             `)
             $('#changeFeaturedVideoModal').css("display", "flex").hide().fadeIn();
-        });
-
-        
+        });        
     },
     changeFeaturedVideo : function (url, category) {
         database.ref('/featuredVideos/'+category).set(url);
@@ -201,9 +315,19 @@ APP.controller.Admin = {
 
     // Galeria
     actionsGallery : function () {
-        $('body').on('click', 'div#gallery div.items div.item', function(event) {
+        $('body').on('click', 'div#gallery div.items div.item a.editItem', function(event) {
             event.preventDefault();
-            
+            var id = $(this).parent().data('id');
+            APP.controller.Admin.editOrAddGalleryItem(id);
+        });
+        $('body').on('click', 'div#gallery div.items div.item a.deleteItem', function(event) {
+            event.preventDefault();
+            var id = $(this).parent().data('id');
+            APP.controller.Admin.confirmDeleteGalleryItem(id);
+        });
+        $('body').on('click', 'div#gallery a.addNewItem', function(event) {
+            event.preventDefault();
+            APP.controller.Admin.editOrAddGalleryItem();
         });
     },
     reorderGallery : function () {
@@ -225,8 +349,295 @@ APP.controller.Admin = {
 
         });
     },
-    saveGalleryItem : function () {
+    actionsGalleryItem : function () {
+        $('body').on('click', '#editAddGalleryItemModal a.save', function(event) {
+            event.preventDefault();
 
+            if (gModal.attr('data-id') != null) {
+                var id = gModal.attr('data-id');
+            } else {
+                var id = moment().format('x');
+            }
+            var dataGalleryItem = {};
+
+            // Categoria
+            dataGalleryItem.category = [];
+            $('#editAddGalleryItemModal .categories input:checked').each(function(index, el) {
+                dataGalleryItem.category.push($(this).attr('id').replace('_', ''));
+            });
+
+            // Descrição
+            dataGalleryItem.desc = descTextbox[0].content.get();
+
+            // Mídia
+            dataGalleryItem.media = [];
+            $('#editAddGalleryItemModal .media div.items div.item').each(function(index, el) {
+                var order = index;
+                var type = $(this).attr('class').replace('item ', '');
+                if (type == "video") { var url = $(this).find('video').attr('src')}
+                if (type == "image") { var url = $(this).find('> img').attr('src')}
+                if (type == "embed") { var url = $(this).find('.actions textarea').val()}
+                dataGalleryItem.media.push({
+                    order: order,
+                    type: type,
+                    url: url
+                })
+            });
+
+            // Nome
+            dataGalleryItem.name = $('#editAddGalleryItemModal #name').val();
+
+            // Ordem
+            dataGalleryItem.order = $('#admin #gallery .items .item').length;
+
+            // Thumbnail
+            var reg = /(?:\(['"]?)(.*?)(?:['"]?\))/;
+            var url = $('#editAddGalleryItemModal .thumbnail .ratio').css('background-image') === "none" ? "" : reg.exec($('#editAddGalleryItemModal .thumbnail .ratio').css('background-image'))[1];
+            dataGalleryItem.thumb = url;
+
+            if (window.confirm("Você realmente deseja salvar esse projeto?")) { 
+                APP.controller.Admin.saveGalleryItem(dataGalleryItem, id);
+                if (gModal.attr('data-id') === undefined) {
+
+                    var wrap = $('section#admin div#gallery div.items');
+                    wrap.append(`               
+                        <div data-order="${dataGalleryItem.order}" data-id="${id}" class="item" style="background-image: url(${dataGalleryItem.thumb})">
+                            <span>${dataGalleryItem.name}</span>
+                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                            <a href="#" class="editItem"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="deleteItem"><i class="fas fa-trash"></i></a>
+                        </div>
+                    `)
+
+                    tinysort('section#admin div#gallery div.items div.item',{attr:'data-order'});
+
+                }
+            }
+
+        });
+        $('body').on('click', '#editAddGalleryItemModal a.close', function(event) {
+            if (window.confirm("Você realmente deseja sair desse projeto?")) { 
+                $('#editAddGalleryItemModal').removeClass('active');
+            }
+        });
+        $('body').on('click', '#editAddGalleryItemModal div.addMore a', function(event) {
+            event.preventDefault();
+            var type = $(this).data('type');
+            APP.controller.Admin.addGalerryItemMedia(type);
+        });
+        $('body').on('click', '#editAddGalleryItemModal div.items div.item a.deleteItemProject', function(event) {
+            event.preventDefault();
+            $(this).parents('.item').remove();
+            APP.controller.Admin.dragSortGalleryItemMedia();
+        });
+        $('body').on('change', '#editAddGalleryItemModal div.thumbnail input[type=file]', function(event) {
+            event.preventDefault()
+            var file = $(this)[0].files[0];
+            APP.controller.Admin.uploadGalleryThumbImage(file);            
+        });
+        $('body').on('change', '#editAddGalleryItemModal div.items div.item.video input[type=file]', function(event) {
+            event.preventDefault()
+            var file = $(this)[0].files[0];
+            var indexItem = $(this).parents('.item').index();
+            APP.controller.Admin.uploadGalleryItemVideo(file, indexItem);            
+        });
+        $('body').on('change', '#editAddGalleryItemModal div.items div.item.image input[type=file]', function(event) {
+            var file = $(this)[0].files[0];
+            var indexItem = $(this).parents('.item').index();
+            APP.controller.Admin.uploadGalleryItemImage(file, indexItem);
+        });
+
+        $('body').on('keyup', '#editAddGalleryItemModal div.items div.item.embed textarea', function(event) {
+            var code = $(this).val()
+            $(this).parents('.item').find('.wrap-item').html(`
+                ${code}
+                <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+            `)
+        });        
+
+    },
+    resetEditOrAddGalleryItem : function () {
+        gModal.removeAttr('data-id');
+        gModal.find('div.content div.name input#name').val("");
+        gModal.find('div.content div.categories input[type=checkbox]').prop('checked', false);
+        gModal.find('div.content div.desc').html('<h3>Descrição:</h3><textarea id="desc"></textarea>');
+        gModal.find('div.content div.thumbnail div.ratio').removeAttr('style');
+        gModal.find('div.content div.media div.items').html('');
+    },
+    dragSortGalleryItemMedia : function () {
+        gModal.find('div.media div.items').dragsort("destroy");
+        gModal.find('div.media div.items').dragsort({ 
+            dragSelector: ".item", 
+            dragEnd: function() {
+                gModal.find('div.media div.items div.item').each(function(index, el) {
+                    $(this).attr('data-order', index);
+                });
+            }, 
+            dragBetween: false, 
+            placeHolderTemplate: "<div class='placeholder'></div>" 
+        });
+    },
+    editOrAddGalleryItem : function (id) {
+    
+        // Reseta o os itens na tela
+        APP.controller.Admin.resetEditOrAddGalleryItem();
+        
+        descTextbox = textboxio.replaceAll('textarea#desc', {
+            paste: {
+                style: 'clean'
+            }
+        });
+
+        if (id === undefined) {
+            // Insere o Título do Modal
+            gModal.find('header h2').html("Adicionar novo projeto");
+            $('#editAddGalleryItemModal').addClass('active');
+        } else {
+
+            database.ref('/').once('value').then(function(snapshot) {
+                data = snapshot.val()
+            }).then(function() {
+
+                console.log(data["gallery"][id])
+                console.table(data["gallery"][id]["media"])
+
+                var pData = data["gallery"][id]
+
+                gModal.attr('data-id', id)
+                
+                // Insere o Título do Modal
+                gModal.find('header h2').html("Editar projeto");
+
+                // Insere o nome
+                gModal.find('input#name').val(pData["name"])
+
+                // Insere as categorias selecionadas
+                if (typeof(pData["category"]) != "undefined") {
+                    $.each(pData["category"], function(index, val) {
+                        gModal.find('input#_' + val).prop('checked', true)
+                    });
+                }
+
+                // Insere o Thumbnail
+                gModal.find('div.thumbnail div.ratio').css('background-image', 'url(' + pData['thumb'] + ')');
+
+                // Insere descrição
+                descTextbox[0].content.set(pData["desc"])
+
+                // Insere os itens de mídia
+                if (typeof(pData["media"]) != "undefined") {
+                    gModal.find('div.media .items').append(`
+                        ${pData["media"].map(function(media, index) {
+                            var temp_id = "temp_" + parseInt(Math.random() * 1000000000000);
+                            if (media.type === "image") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <img src="${media.url}" />
+                                        <div class="actions">
+                                            <label for="${temp_id}">Alterar imagem</label>
+                                            <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+                                            <a href="#" class="deleteItemProject">Apagar Imagem</a>
+                                        </div>
+                                    </div>
+                                `;
+                            } else if (media.type === "video") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <div class="wrap-item">
+                                            <video controls src="${media.url}"></video>
+                                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                                        </div>
+                                        <div class="actions">
+                                            <label for="${temp_id}">Alterar vídeo</label>
+                                            <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                                            <a href="#" class="deleteItemProject">Apagar Vídeo</a>
+                                        </div>
+                                    </div>
+                                `;
+                            } else if (media.type === "embed") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <div class="wrap-item">
+                                            ${media.url}
+                                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                                        </div>
+                                        <div class="actions">
+                                            <textarea>${media.url}</textarea>
+                                            <a href="#" class="deleteItemProject">Apagar embed</a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }).join("")}
+                    `)
+                    tinysort('#editAddGalleryItemModal div.media div.items>*',{attr:'data-order'});
+                    APP.controller.Admin.dragSortGalleryItemMedia();
+                }
+
+                $('#editAddGalleryItemModal').addClass('active');
+                
+
+            })
+
+
+        }
+    },
+    addGalerryItemMedia : function (type) {
+        var temp_id = "temp_" + parseInt(Math.random() * 1000000000000);
+        if (type === "image") {
+            gModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${gModal.find('.media .items .item').length}">
+                    <img src="" />
+                    <div class="actions">
+                        <label for="${temp_id}">Alterar imagem</label>
+                        <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+                        <a href="#" class="deleteItemProject">Apagar Imagem</a>
+                    </div>
+                </div>
+            `)
+        } else if (type === "video") {
+            gModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${gModal.find('.media .items .item').length}">
+                    <div class="wrap-item">
+                        <video controls src=""></video>
+                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                    </div>
+                    <div class="actions">
+                        <label for="${temp_id}">Alterar vídeo</label>
+                        <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                        <a href="#" class="deleteItemProject">Apagar Vídeo</a>
+                    </div>
+                </div>
+            `);
+        } else if (type === "embed") {
+            gModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${gModal.find('.media .items .item').length}">
+                    <div class="wrap-item">
+                        
+                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                    </div>
+                    <div class="actions">
+                        <textarea placeholder="Cole o código de embed aqui"></textarea>
+                        <a href="#" class="deleteItemProject">Apagar embed</a>
+                    </div>
+                </div>
+            `);
+        }
+    },
+    saveGalleryItem : function (dataGalleryItem, id) {
+        database.ref('/gallery/'+id).set(dataGalleryItem);
+        APP.controller.Admin.saveGalleryOrder();
+        gModal.removeClass('active');
+    },
+    confirmDeleteGalleryItem : function (id) {
+        if (window.confirm("Você realmente deseja apagar esse projeto?")) { 
+            APP.controller.Admin.deleteGalleryItem(id);
+            $('#gallery .item[data-id='+id+']').remove();
+            APP.controller.Admin.saveGalleryOrder();
+        }
+    },
+    deleteGalleryItem : function (id) {
+        database.ref('/gallery/'+id).remove()
     },
 
 };

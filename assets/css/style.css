@@ -10526,7 +10526,7 @@ div#changeFeaturedVideoModal div.modal
     max-width: 400px; 
     padding: 10px;
 
-    border: 2px solid #222;
+    border: 1px solid #222;
     background: #fccdbd;
 }
 div#changeFeaturedVideoModal div.modal div.wrap
@@ -10568,7 +10568,7 @@ div#changeFeaturedVideoModal div.modal div.wrap input
     margin: 0;
     padding: 0 10px;
 
-    border: 2px solid #222;
+    border: 1px solid #222;
     border-bottom: 0;
 }
 div#changeFeaturedVideoModal div.modal div.wrap a
@@ -10586,7 +10586,7 @@ div#changeFeaturedVideoModal div.modal div.wrap a
     padding: 0 20px;
 
     color: #222; 
-    border: 2px solid #222;
+    border: 1px solid #222;
     border-top: 0;
     background: #d0ff87;
 
@@ -11217,7 +11217,7 @@ section#login form input
     margin-top: 5px;
     padding: 0 10px;
 
-    border: 2px solid #222;
+    border: 1px solid #222;
 }
 section#login form input[type=submit]
 {
@@ -11312,7 +11312,7 @@ section#admin div#main div.box
     width: 100%;
     margin-top: 20px; 
 
-    border: 2px solid #222;
+    border: 1px solid #222;
     background: #fff;
 
     -webkit-flex-wrap: wrap;
@@ -11409,7 +11409,7 @@ section#admin div#main div#heroVideo div.content div.video
 
     padding: 56.25% 0 0 0;
 
-    border: 2px solid #222;
+    border: 1px solid #222;
     border-bottom: 0; 
     background: #222;
 }
@@ -11426,7 +11426,7 @@ section#admin div#main div#heroVideo div.actions
 {
     margin-top: 0;
 
-    border: 2px solid #222; 
+    border: 1px solid #222; 
     border-top: 0;
 }
 section#admin div#main div#heroVideo div.actions input[type=file]
@@ -11459,7 +11459,7 @@ section#admin div#main div#featuredVideos div.content div.item
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
 
-    border: 2px solid #222;
+    border: 1px solid #222;
 }
 @media screen and (max-width: 700px)
 {
@@ -11556,7 +11556,7 @@ section#admin div#main div#gallery div.items div.placeholder
 
     cursor: pointer;
 
-    border: 2px solid #000;
+    border: 1px solid #000;
     background-repeat: no-repeat;
     background-position: center center; 
     -webkit-background-size: cover;
@@ -11624,15 +11624,66 @@ section#admin div#main div#gallery div.items div.placeholder span
     height: 100%;
     padding: 10px;
 
+    cursor: move; 
     -webkit-transition: all ease .3s;
          -o-transition: all ease .3s;
-            transition: all ease .3s; 
+            transition: all ease .3s;
     -webkit-transform: translateX(-100%);
         -ms-transform: translateX(-100%);
             transform: translateX(-100%);
 
     opacity: 0;
     color: #fff;
+}
+section#admin div#main div#gallery div.items div.item a,
+section#admin div#main div#gallery div.items div.placeholder a
+{
+    font-size: 20px;
+
+    position: absolute;
+    z-index: 1001; 
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 36px;
+    height: 36px;
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+
+    opacity: 0;
+    color: #fff;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+section#admin div#main div#gallery div.items div.item a.editItem,
+section#admin div#main div#gallery div.items div.placeholder a.editItem
+{
+    right: 46px;
+    bottom: 5px;
+
+    background: #ff764d;
+}
+section#admin div#main div#gallery div.items div.item a.deleteItem,
+section#admin div#main div#gallery div.items div.placeholder a.deleteItem
+{
+    right: 5px;
+    bottom: 5px;
+
+    background: #f84b4b;
 }
 section#admin div#main div#gallery div.items div.item:hover,
 section#admin div#main div#gallery div.items div.placeholder:hover
@@ -11648,6 +11699,11 @@ section#admin div#main div#gallery div.items div.placeholder:hover
 
     -webkit-box-shadow: 0 0 0 5px #222;
             box-shadow: 0 0 0 5px #222;
+}
+section#admin div#main div#gallery div.items div.item:hover a,
+section#admin div#main div#gallery div.items div.placeholder:hover a
+{
+    opacity: 1;
 }
 section#admin div#main div#gallery div.items div.item:hover:before,
 section#admin div#main div#gallery div.items div.placeholder:hover:before
@@ -11669,5 +11725,472 @@ section#admin div#main div#gallery div.actions
 }
 section#admin div#main div#gallery div.actions a
 {
-    border: 2px solid #222;
+    border: 1px solid #222;
+}
+
+div#editAddGalleryItemModal
+{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    right: -100vw;
+
+    display: block;
+
+    width: 100vw;
+    height: 100vh;
+
+    -webkit-transition: opacity .3s ease;
+         -o-transition: opacity .3s ease;
+            transition: opacity .3s ease; 
+
+    opacity: 0;
+}
+div#editAddGalleryItemModal div.overlay
+{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: -100vw;
+
+    width: 100vw;
+    height: 100vh; 
+
+    background: rgba(0, 0, 0, .75);
+}
+div#editAddGalleryItemModal div.content
+{
+    position: relative;
+    z-index: 1;
+    top: -100vh;
+
+    overflow: auto;
+
+    width: -webkit-calc(100% - 40px);
+    width:         calc(100% - 40px);
+    max-width: 960px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 10px; 
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+
+    background: #fccdbd;
+}
+@media screen and (max-width: 768px)
+{
+    div#editAddGalleryItemModal div.content
+    {
+        position: absolute; 
+        top: auto;
+        right: -100vw;
+
+        margin: 0;
+    }
+}
+div#editAddGalleryItemModal div.content header a.close
+{
+    font-size: 20px;
+    line-height: 100%;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer; 
+
+    color: #fff;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#editAddGalleryItemModal div.content header h2
+{
+    font-size: 20px;
+    font-weight: bold;
+
+    margin: -10px -10px 0;
+    padding: 10px 50px 10px 10px;
+
+    text-transform: uppercase; 
+
+    color: #fff;
+    background: #f84b4b;
+}
+div#editAddGalleryItemModal div.content div.wrap input[type=text]
+{
+    width: 100%;
+    height: 40px;
+    padding: 0 10px; 
+
+    border: 1px solid #222;
+}
+div#editAddGalleryItemModal div.content div.wrap input[type=checkbox],
+div#editAddGalleryItemModal div.content div.wrap input[type=file]
+{
+    display: none;
+}
+div#editAddGalleryItemModal div.content div.wrap textarea
+{
+    width: 100%;
+    padding: 10px 10px; 
+
+    border: 1px solid #222;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    margin: 20px auto;
+    padding: 10px;
+
+    border: 1px solid #f97070;
+    background: #fddfd5;
+
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in h3
+{
+    font-size: 20px;
+    font-weight: bold;
+
+    width: -webkit-calc(100% + 20px);
+    width:         calc(100% + 20px);
+    margin: -10px -10px 10px -10px; 
+    padding: 10px;
+
+    color: #fff;
+    background: #f97070;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label
+{
+    border: 1px solid #71ba00;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label:before
+{
+    content: ' ';
+
+    color: #71ba00;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label
+{
+    width: auto;
+    margin-right: 10px;
+    padding: 10px;
+
+    text-align: center;
+
+    border: 1px solid #d50808; 
+    background: #eee;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label:before
+{
+    font-family: 'Font Awesome 5 Free';
+
+    content: ' '; 
+
+    color: #d50808;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc textarea
+{
+    min-height: 200px;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc #ephox_desc
+{
+    height: auto !important;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
+{
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
+{
+    width: -webkit-calc(50% - 5px);
+    width:         calc(50% - 5px);
+
+    border: 1px solid #f99674;
+    background-color: #fef2ee; 
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio img
+{
+    display: block;
+
+    width: 100%;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
+{
+    width: -webkit-calc(50% - 5px);
+    width:         calc(50% - 5px);
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions label
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px; 
+
+    color: #fff;
+    background: #ff764d;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media
+{
+    position: relative; 
+
+    width: 100%;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items
+{
+    position: relative; 
+
+    width: 100%;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    margin: 10px auto;
+    padding: 10px;
+
+    cursor: move !important; 
+
+    border: 1px solid #fbbba5;
+    background: #fef2ee;
+
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
+{
+    position: relative;
+
+    width: -webkit-calc(50% - 5px);
+    width:         calc(50% - 5px);
+
+    border: 1px solid #f99674;
+    background-color: #fef2ee;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > *:not(img),
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video > *:not(img),
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > *:not(img)
+{
+    position: absolute;
+    top: 0;
+    left: 0; 
+
+    width: 100%;
+    height: 100%;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > img,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video > img,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > img
+{
+    display: block;
+
+    width: 100%;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
+{
+    width: -webkit-calc(50% - 5px);
+    width:         calc(50% - 5px);
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
+{
+    margin-bottom: 10px;
+
+    resize: vertical;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+
+    cursor: pointer; 
+
+    color: #fff;
+    background: #ff8a67;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label.deleteItemProject,
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a.deleteItemProject
+{
+    background: #f96464;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.placeholder
+{
+    margin: 10px auto; 
+    padding: 10px;
+
+    border: 1px dashed #222;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore
+{
+    font-size: 18px;
+    font-weight: bold;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: -webkit-calc(100% + 24px);
+    width:         calc(100% + 24px);
+    margin: 0 -10px -10px;
+    padding: 10px;
+
+    color: #222; 
+    border-top: 1px solid #f99674;
+    background: white;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore span
+{
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+            flex-shrink: 0;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore a
+{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100%;
+    height: 40px;
+    margin: 0 0 0 5px;
+
+    color: #fff;
+    background: #ff85a6;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#editAddGalleryItemModal div.content div.wrap a.save
+{
+    font-weight: bold;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100%;
+    height: 40px;
+    margin: 10px 0; 
+    padding: 0 20px;
+
+    color: #222;
+    background: #b2ff3b;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#editAddGalleryItemModal.active
+{
+    right: 0;
+
+    opacity: 1;
+}
+div#editAddGalleryItemModal.active div.overlay
+{
+    right: 0;
+}
+div#editAddGalleryItemModal.active div.content
+{
+    top: 0;
+}
+@media screen and (max-width: 768px)
+{
+    div#editAddGalleryItemModal.active div.content
+    {
+        top: auto; 
+        right: 0;
+    }
 }

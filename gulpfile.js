@@ -69,6 +69,7 @@ var paths = {
 		'assets/js/vendor/isotope.pkgd.min.js',
 		'assets/js/vendor/jquery.stellar.min.js',
 		'assets/js/vendor/tinysort.js',
+		'assets/js/vendor/moment.min.js',
 
 		//'assets/js/vendor/jquery.mCustomScrollbar.js',
 		//'assets/js/vendor/jquery.center.js',
@@ -96,6 +97,7 @@ var paths = {
 		'assets/js/vendor/isotope.pkgd.min.js',
 		'assets/js/vendor/jquery.stellar.min.js',
 		'assets/js/vendor/tinysort.js',
+		'assets/js/vendor/moment.min.js',
 
 		//System
 		'assets/js/core/_nameSpace.js',

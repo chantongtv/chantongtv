@@ -517,6 +517,11 @@ div#editAddGalleryItemModal {
 				&.thumbnail {
 					align-items: flex-start;
 					justify-content: space-between;
+
+					@media screen and (max-width: 520px) {
+						flex-direction: column;
+					}
+
 					div.ratio {
 						width: calc(50% - 5px);
 						background-size: cover;
@@ -524,6 +529,10 @@ div#editAddGalleryItemModal {
 						background-repeat: no-repeat;
 						border: 1px solid darken($chan-skin, 15%);
 						background-color: lighten($chan-skin, 10%);
+						
+						@media screen and (max-width: 520px) {
+							width: calc(100%);
+						}
 
 						img {
 							display: block;
@@ -533,6 +542,11 @@ div#editAddGalleryItemModal {
 
 					div.actions {
 						width: calc(50% - 5px);
+
+						@media screen and (max-width: 520px) {
+							width: calc(100%);
+						}
+						
 						label {
 							width: 100%;
 							background: $chan-orange;
@@ -564,11 +578,19 @@ div#editAddGalleryItemModal {
 							justify-content: space-between;
 							cursor: move !important;
 
+							@media screen and (max-width: 520px) {
+								flex-direction: column;
+							}
+
 							div.wrap-item, video, > img {
 								width: calc(50% - 5px);
 								position: relative;
 								border: 1px solid darken($chan-skin, 15%);
 								background-color: lighten($chan-skin, 10%);
+
+								@media screen and (max-width: 520px) {
+									width: calc(100%);
+								}
 
 								> *:not(img) {
 									width: 100%;
@@ -587,9 +609,18 @@ div#editAddGalleryItemModal {
 							div.actions {
 								width: calc(50% - 5px);
 
+								@media screen and (max-width: 520px) {
+									width: calc(100%);
+								}
+
 								textarea {
 									margin-bottom: 10px;
 									resize: vertical;
+
+									@media screen and (max-width: 520px) {
+										margin-bottom: 0;
+										margin-top: 10px;
+									}
 								}
 
 								label, a {
@@ -602,6 +633,11 @@ div#editAddGalleryItemModal {
 									color: #fff;
 									margin-bottom: 10px;
 									cursor: pointer;
+
+									@media screen and (max-width: 520px) {
+										margin-bottom: 0;
+										margin-top: 10px;
+									}
 
 									&.deleteItemProject {
 										background: lighten($chan-red, 5%);

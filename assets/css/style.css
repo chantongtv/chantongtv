@@ -11935,6 +11935,18 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
     -ms-flex-pack: justify;
             justify-content: space-between;
 }
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
+    {
+                flex-direction: column; 
+
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+    }
+}
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
 {
     width: -webkit-calc(50% - 5px);
@@ -11947,6 +11959,14 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
     -webkit-background-size: cover;
             background-size: cover;
 }
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
+    {
+        width: -webkit-calc(100%);
+        width:         calc(100%);
+    }
+}
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio img
 {
     display: block;
@@ -11957,6 +11977,14 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actio
 {
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
+}
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
+    {
+        width: -webkit-calc(100%);
+        width:         calc(100%);
+    }
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions label
 {
@@ -12013,6 +12041,18 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
     -ms-flex-pack: justify;
             justify-content: space-between;
 }
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item
+    {
+                flex-direction: column; 
+
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+    }
+}
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
@@ -12024,6 +12064,16 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 
     border: 1px solid #f99674;
     background-color: #fef2ee;
+}
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
+    {
+        width: -webkit-calc(100%);
+        width:         calc(100%);
+    }
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > *:not(img),
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video > *:not(img),
@@ -12049,11 +12099,27 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
 }
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
+    {
+        width: -webkit-calc(100%);
+        width:         calc(100%);
+    }
+}
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
 {
     margin-bottom: 10px;
 
     resize: vertical;
+}
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
+    {
+        margin-top: 10px; 
+        margin-bottom: 0;
+    }
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
@@ -12080,6 +12146,15 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
     -webkit-justify-content: center;
     -ms-flex-pack: center;
             justify-content: center;
+}
+@media screen and (max-width: 520px)
+{
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
+    {
+        margin-top: 10px; 
+        margin-bottom: 0;
+    }
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label.deleteItemProject,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a.deleteItemProject

@@ -5499,7 +5499,7 @@ APP.controller.Admin = {
 
         console.log(file);
 
-        var uploadTask = firebase.storage().ref().child('gallery/videos/' + moment().format("X") + "_" + file.name).put(file);
+        var uploadTask = firebase.storage().ref().child('gallery/images/' + moment().format("X") + "_" + file.name).put(file);
 
         uploadTask.on('state_changed', function(snapshot){
           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;

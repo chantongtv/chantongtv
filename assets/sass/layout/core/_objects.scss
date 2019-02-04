@@ -92,10 +92,11 @@ div#loading {
 	display: block;
 	width: 100%;
 	height: 100%;
-	background-color: $chan-skin;
-	background-image: url('../img/logo.png');
+	background-color: #f84b4b;
+	background-image: url('../img/loading.gif');
 	background-repeat: no-repeat;
 	background-position: center center;
+	background-size: 300px;
 	z-index: 100000;
 }
 

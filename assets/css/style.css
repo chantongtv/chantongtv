@@ -10488,10 +10488,12 @@ div#loading
     width: 100%;
     height: 100%;
 
-    background-color: #fccdbd;
-    background-image: url('../img/logo.png');
+    background-color: #f84b4b;
+    background-image: url('../img/loading.gif');
     background-repeat: no-repeat;
     background-position: center center;
+    -webkit-background-size: 300px 300px;
+            background-size: 300px;
 }
 
 div#changeFeaturedVideoModal
@@ -10607,8 +10609,8 @@ section#hero
     overflow: hidden; 
 
     width: 100%;
-    height: -webkit-calc(100vh - 60px);
-    height:         calc(100vh - 60px);
+    height: -webkit-calc(100vh - 120px);
+    height:         calc(100vh - 120px);
     margin-top: 80px;
 }
 @media screen and (max-width: 768px)
@@ -10628,26 +10630,6 @@ section#hero div.fixed
 
     width: 100%;
     height: 100%;
-}
-section#hero div.fixed:after
-{
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    content: '';
-
-    opacity: .15; 
-    background-image: url('../img/reticula.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    -webkit-background-size: cover;
-            background-size: cover;
 }
 section#hero div.fixed h1
 {
@@ -11020,7 +11002,7 @@ section#portfolio div.items div.item:hover span
         width:         calc(50% - 10px);
     }
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 340px)
 {
     section#portfolio div.items div.item
     {
@@ -11125,7 +11107,7 @@ section#me img.photo
 {
     width: -webkit-calc(33.333333% - 5px);
     width:         calc(33.333333% - 5px);
-    max-width: 300px;
+    max-width: 220px;
 }
 @media screen and (max-width: 600px)
 {

@@ -374,13 +374,15 @@ APP.controller.Admin = {
             $('#editAddGalleryItemModal .media div.items div.item').each(function(index, el) {
                 var order = index;
                 var type = $(this).attr('class').replace('item ', '');
+                var featured = $(this).find('input[type=checkbox]').is(':checked');
                 if (type == "video") { var url = $(this).find('video').attr('src')}
                 if (type == "image") { var url = $(this).find('> img').attr('src')}
                 if (type == "embed") { var url = $(this).find('.actions textarea').val()}
                 dataGalleryItem.media.push({
                     order: order,
                     type: type,
-                    url: url
+                    url: url,
+                    featured: featured
                 })
             });
 
@@ -536,6 +538,10 @@ APP.controller.Admin = {
                                         <div class="actions">
                                             <label for="${temp_id}">Alterar imagem</label>
                                             <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar Imagem</a>
                                         </div>
                                     </div>
@@ -550,6 +556,10 @@ APP.controller.Admin = {
                                         <div class="actions">
                                             <label for="${temp_id}">Alterar vídeo</label>
                                             <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar Vídeo</a>
                                         </div>
                                     </div>
@@ -563,6 +573,10 @@ APP.controller.Admin = {
                                         </div>
                                         <div class="actions">
                                             <textarea>${media.url}</textarea>
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar embed</a>
                                         </div>
                                     </div>
@@ -591,6 +605,10 @@ APP.controller.Admin = {
                     <div class="actions">
                         <label for="${temp_id}">Alterar imagem</label>
                         <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar Imagem</a>
                     </div>
                 </div>
@@ -605,6 +623,10 @@ APP.controller.Admin = {
                     <div class="actions">
                         <label for="${temp_id}">Alterar vídeo</label>
                         <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar Vídeo</a>
                     </div>
                 </div>
@@ -618,6 +640,10 @@ APP.controller.Admin = {
                     </div>
                     <div class="actions">
                         <textarea placeholder="Cole o código de embed aqui"></textarea>
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar embed</a>
                     </div>
                 </div>

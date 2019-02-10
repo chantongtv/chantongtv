@@ -12528,17 +12528,47 @@ aside#itemGallery div.content div.featured
 {
     margin-bottom: 30px;
 }
+aside#itemGallery div.content div.featured img,
+aside#itemGallery div.content div.featured div.video,
+aside#itemGallery div.content div.featured div.embed
+{
+    display: block; 
+
+    width: 100%;
+    margin-bottom: 10px;
+}
+aside#itemGallery div.content div.featured div.video
+{
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden; 
+
+    padding: -webkit-calc(56.25%) 0 0 0;
+    padding:         calc(56.25%) 0 0 0;
+
+    background: #222;
+}
+aside#itemGallery div.content div.featured div.video video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+}
 aside#itemGallery div.content div.featured div.embed
 {
     position: relative;
     z-index: 1;
 
-    display: block;
     overflow: hidden; 
 
-    width: 100%;
-    margin: 30px 0 0;
-    padding: 56.25% 0 0 0;
+    padding: -webkit-calc(56.25%) 0 0 0;
+    padding:         calc(56.25%) 0 0 0;
 
     background: #222;
 }
@@ -14677,6 +14707,37 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
         margin-top: 10px; 
         margin-bottom: 0;
     }
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label
+{
+    border: 1px solid #71ba00;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label:before
+{
+    content: ' ';
+
+    color: #71ba00;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label
+{
+    width: auto;
+    padding: 10px;
+
+    text-align: center;
+
+    color: #222;
+    border: 1px solid #d50808; 
+    background: #eee;
+}
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label:before
+{
+    font-family: 'Font Awesome 5 Free';
+
+    margin-right: 5px;
+
+    content: ' '; 
+
+    color: #d50808;
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a

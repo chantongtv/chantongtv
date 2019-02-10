@@ -8103,13 +8103,15 @@ APP.controller.Admin = {
             $('#editAddGalleryItemModal .media div.items div.item').each(function(index, el) {
                 var order = index;
                 var type = $(this).attr('class').replace('item ', '');
+                var featured = $(this).find('input[type=checkbox]').is(':checked');
                 if (type == "video") { var url = $(this).find('video').attr('src')}
                 if (type == "image") { var url = $(this).find('> img').attr('src')}
                 if (type == "embed") { var url = $(this).find('.actions textarea').val()}
                 dataGalleryItem.media.push({
                     order: order,
                     type: type,
-                    url: url
+                    url: url,
+                    featured: featured
                 })
             });
 
@@ -8265,6 +8267,10 @@ APP.controller.Admin = {
                                         <div class="actions">
                                             <label for="${temp_id}">Alterar imagem</label>
                                             <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar Imagem</a>
                                         </div>
                                     </div>
@@ -8279,6 +8285,10 @@ APP.controller.Admin = {
                                         <div class="actions">
                                             <label for="${temp_id}">Alterar vídeo</label>
                                             <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar Vídeo</a>
                                         </div>
                                     </div>
@@ -8292,6 +8302,10 @@ APP.controller.Admin = {
                                         </div>
                                         <div class="actions">
                                             <textarea>${media.url}</textarea>
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
                                             <a href="#" class="deleteItemProject">Apagar embed</a>
                                         </div>
                                     </div>
@@ -8320,6 +8334,10 @@ APP.controller.Admin = {
                     <div class="actions">
                         <label for="${temp_id}">Alterar imagem</label>
                         <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar Imagem</a>
                     </div>
                 </div>
@@ -8334,6 +8352,10 @@ APP.controller.Admin = {
                     <div class="actions">
                         <label for="${temp_id}">Alterar vídeo</label>
                         <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar Vídeo</a>
                     </div>
                 </div>
@@ -8347,6 +8369,10 @@ APP.controller.Admin = {
                     </div>
                     <div class="actions">
                         <textarea placeholder="Cole o código de embed aqui"></textarea>
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
                         <a href="#" class="deleteItemProject">Apagar embed</a>
                     </div>
                 </div>
@@ -8525,25 +8551,27 @@ APP.controller.Home = {
                 </h3>
             </div>
             <div class="wrap">
-                ${typeof(dataItem.featured) === "undefined" || dataItem.featured === "" 
-                    ? `` 
-                    : `
-                        <div class="featured">
-                            <div class="embed">
-                                <iframe src="https://player.vimeo.com/video/IDVIMEO?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    `
-                }
+                <div class="featured">
+                    ${dataItem.media.map(function(media, index) {
+                        if (media.type === "image" && media.featured) {
+                            return `<img data-order="${media.url.split('.').pop().split('?')[0] === "gif" ? media.order + 100 : media.order}" src="${media.url}" class="grid-item ${media.url.split('.').pop().split('?')[0]}" />`;
+                        } else if (media.type === "video" && media.featured) {
+                            return `<div class="grid-item video" data-order="${media.order}"><video controls src="${media.url}"></video></div>`;
+                        } else if (media.type === "embed" && media.featured) {
+                            return `<div data-order="${media.order}" class="grid-item embed">${media.url}</div>`;
+                        }
+                    }).join("")}
+                </div>
+
                 ${typeof(dataItem.desc) === "undefined" || dataItem.desc === "" ? "" : `<div class="desc">${dataItem.desc}</div>`}
                 <div class="media${dataItem.media.length < 2 ? " full" : ""}" >
                     <div class="grid-sizer"></div>
                     ${dataItem.media.map(function(media, index) {
-                        if (media.type === "image") {
+                        if (media.type === "image" && !media.featured) {
                             return `<img data-order="${media.url.split('.').pop().split('?')[0] === "gif" ? media.order + 100 : media.order}" src="${media.url}" class="grid-item ${media.url.split('.').pop().split('?')[0]}" />`;
-                        } else if (media.type === "video") {
+                        } else if (media.type === "video" && !media.featured) {
                             return `<div class="grid-item video" data-order="${media.order}"><video controls src="${media.url}"></video></div>`;
-                        } else if (media.type === "embed") {
+                        } else if (media.type === "embed" && !media.featured) {
                             return `<div data-order="${media.order}" class="grid-item embed">${media.url}</div>`;
                         }
                     }).join("")}

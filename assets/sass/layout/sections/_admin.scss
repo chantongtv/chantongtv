@@ -623,6 +623,32 @@ div#editAddGalleryItemModal {
 									}
 								}
 
+								input[type=checkbox]:checked + label {
+									border: 1px solid darken($chan-green, 50%);
+									&:before {
+										content: " ";
+										color: darken($chan-green, 50%);			
+									}
+
+								}
+
+								input[type=checkbox] + label {
+									color: $chan-dark;
+									padding: 10px;
+									background: #eee;
+									width: auto;
+									text-align: center;
+									// margin-right: 10px;
+									border: 1px solid darken($chan-red, 20%);
+
+									&:before {
+										margin-right: 5px;
+										font-family: 'Font Awesome 5 Free';
+										color: darken($chan-red, 20%);
+										content: " "
+									}
+								}
+
 								label, a {
 									width: 100%;
 									background: lighten($chan-orange, 5%);

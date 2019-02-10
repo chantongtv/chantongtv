@@ -23,30 +23,59 @@ aside#itemGallery {
 		height: 100vh;
 	}
 
+	$drag-size: 10px;
+
+	.mCSB_inside > .mCSB_container {
+	    margin-right: $drag-size;
+	}
+
+	.mCSB_scrollTools {
+	    width: $drag-size;
+	    box-shadow: 0 0 5px rgba(#000, 0.5);
+	}
+
+	.mCSB_scrollTools .mCSB_draggerRail {
+	    width: $drag-size;
+	    border-radius: 0;
+	    background: #747474;
+	}
+
+	.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+	    width: $drag-size;
+	    border-radius: 0;
+	    background: #000;
+	}
+
 	div.content {
 		position: relative;
 		max-width: 960px;
+		height: 100vh;
 		width: calc(100% - 40px);
 		// right: 0;
 		margin: 0 auto;
 		top: -100vh;
 		background: $chan-dark;
-		height: 100vh;
-		overflow: auto;
 		z-index: 1;
 		transition: all 0.3s ease;
-		padding: 0 30px;
+		padding: 0;
 
 		@media screen and (max-width: 768px) {
 			right: -100vw;
 			top: auto;
 			margin: 0;
 			position: absolute;
-			padding: 0 15px;
+		}
+
+		div.wrap {
+			padding: 0 30px;
+
+			@media screen and (max-width: 768px) {
+				padding: 0 15px;
+			}
 		}
 
 		div.header {
-			margin: 0 -30px 30px -30px;
+			margin: 0 0 30px 0;
 			min-height: 200px;
 			display: flex;
 			align-items: flex-end;
@@ -55,7 +84,6 @@ aside#itemGallery {
 			padding: 30px;
 			position: relative;
 			@media screen and (max-width: 768px) {
-				margin: 0 -15px 30px -15px;	
 				padding: 15px;			
 			}
 
@@ -177,20 +205,76 @@ aside#itemGallery {
 			}
 		}
 		div.media {
-			margin-bottom: 30px;
+			margin: 30px -10px;
 
-			img, video, div.embed {
-				margin: 30px 0 0;
-				width: 100%;
-				display: block;
+			@media screen and (max-width: 600px) {
+				margin: 0;
 			}
+
+			.grid-sizer,
+			.grid-item { width: calc(100% / 6); }
+			/* 6 columns */
+
+			&.full {
+				margin: 0;
+				img, div.video, div.embed {
+					width: 100%;
+				}
+				div.video, div.embed {
+					padding: calc(56.25%) 0 0 0;
+				}	
+			}
+
+			img, div.video, div.embed {
+				margin-bottom: 10px;
+				width: calc(50% - 10px);
+				display: block;
+
+				@media screen and (max-width: 600px) {
+					width: 100%;
+				}
+
+				&.gif {
+					width: calc(33.3333333% - 10px);
+
+					@media screen and (max-width: 600px) {
+						width: 100%;
+					}
+				}
+			}
+
+			div.video {
+				padding: calc(56.25% / 2) 0 0 0;
+				position: relative;
+				z-index: 1;
+				background: $chan-dark;
+				overflow: hidden;
+
+				@media screen and (max-width: 600px) {
+					padding: calc(56.25%) 0 0 0;
+				}
+
+				video {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: block;
+				}
+			}
+
 			div.embed {
-				padding: 56.25% 0 0 0;
+				padding: calc(56.25% / 2) 0 0 0;
 				position: relative;
 				z-index: 1;
 				background: $chan-dark;
 				overflow: hidden;
 				// display: none;
+
+				@media screen and (max-width: 600px) {
+					padding: calc(56.25%) 0 0 0;
+				}
 
 				iframe {
 					position: absolute;

@@ -98,13 +98,15 @@ APP.controller.Home = {
 
         $('body').on('click', 'aside#itemGallery div.overlay, aside#itemGallery a.close', function(event) {
             event.preventDefault();
+            $('aside#itemGallery div.content').mCustomScrollbar('destroy');
             $('aside#itemGallery').removeClass('active');
             $('aside#itemGallery div.content').html("");
-            $('body').removeClass('lockScroll');
+            $('body, html').removeClass('lockScroll');
         });
     },
 
     openItemGallery : function (idItem) {
+        $('#loading').stop().fadeIn();
 
         var dataItem = data["gallery"][idItem];
         var content = $('aside#itemGallery div.content');
@@ -120,39 +122,56 @@ APP.controller.Home = {
                     }).join("")}
                 </h3>
             </div>
-            ${typeof(dataItem.featured) === "undefined" || dataItem.featured === "" 
-                ? `
-                    <div class="featured">
-                        <div class="embed">
-                            <iframe src="https://player.vimeo.com/video/IDVIMEO?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <div class="wrap">
+                ${typeof(dataItem.featured) === "undefined" || dataItem.featured === "" 
+                    ? `` 
+                    : `
+                        <div class="featured">
+                            <div class="embed">
+                                <iframe src="https://player.vimeo.com/video/IDVIMEO?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
                         </div>
-                    </div>
-                `
-                : `` 
-            }
-            ${typeof(dataItem.desc) === "undefined" || dataItem.desc === "" ? "" : `<div class="desc">${dataItem.desc}</div>`}
-            <div class="media">
-                ${dataItem.media.map(function(media, index) {
-                    if (media.type === "image") {
-                        return `<img data-order="${media.order}" src="${media.url}" />`;
-                    } else if (media.type === "video") {
-                        return `<video controls data-order="${media.order}" src="${media.url}"></video>`;
-                    } else if (media.type === "embed") {
-                        return `<div data-order="${media.order}" class="embed">${media.url}</div>`;
-                    }
-                }).join("")}
-            </div>
+                    `
+                }
+                ${typeof(dataItem.desc) === "undefined" || dataItem.desc === "" ? "" : `<div class="desc">${dataItem.desc}</div>`}
+                <div class="media${dataItem.media.length < 2 ? " full" : ""}" >
+                    <div class="grid-sizer"></div>
+                    ${dataItem.media.map(function(media, index) {
+                        if (media.type === "image") {
+                            return `<img data-order="${media.url.split('.').pop().split('?')[0] === "gif" ? media.order + 100 : media.order}" src="${media.url}" class="grid-item ${media.url.split('.').pop().split('?')[0]}" />`;
+                        } else if (media.type === "video") {
+                            return `<div class="grid-item video" data-order="${media.order}"><video controls src="${media.url}"></video></div>`;
+                        } else if (media.type === "embed") {
+                            return `<div data-order="${media.order}" class="grid-item embed">${media.url}</div>`;
+                        }
+                    }).join("")}
+                </div>
 
-            <div class="chantong">
-                <img src="/assets/img/logo.png" alt="" />
-                Chan Tong
+                <div class="chantong">
+                    <img src="/assets/img/logo.png" alt="" />
+                    Chan Tong
+                </div>
             </div>
         `)
 
-        tinysort('aside#itemGallery>div.content>div.media>*',{attr:'data-order'});
 
-        $('aside#itemGallery').addClass('active');
-        $('body').addClass('lockScroll');
+        var $grid = $('aside#itemGallery div.media').imagesLoaded( function() {
+            tinysort('aside#itemGallery>div.content>div.media>*',{attr:'data-order'});
+            $grid.masonry({
+              // set itemSelector so .grid-sizer is not used in layout
+              itemSelector: '.grid-item',
+              // use element for option
+              columnWidth: '.grid-sizer',
+              percentPosition: true,
+            })
+            $('aside#itemGallery').addClass('active');
+            $('body, html').addClass('lockScroll');
+            $('aside#itemGallery div.content').mCustomScrollbar({
+                scrollInertia: 10
+            });
+            $('#loading').stop().fadeOut();
+        });
+
     },
 
     fillContentFirebase : function () {

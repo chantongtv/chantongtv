@@ -6047,13 +6047,26 @@ APP.controller.Home = {
         var content = $('aside#itemGallery div.content');
 
         content.append(`
-            <a class="close"><i class="fas fa-times"></i></a>
-            <h2>${dataItem.name}</h2>
-            <h3>
-                ${dataItem.category.map(function(cat, index) {
-                    return cat + (index === dataItem.category.length - 1 ? "" : ", ");
-                }).join("")}
-            </h3>
+            <div class="header">
+                <a class="close"><i class="fas fa-times"></i></a>
+                <div class="thumb" style="background-image: url(${dataItem.thumb})"></div>
+                <h2>${dataItem.name}</h2>
+                <h3>
+                    ${dataItem.category.map(function(cat, index) {
+                        return cat + (index === dataItem.category.length - 1 ? "" : " / ");
+                    }).join("")}
+                </h3>
+            </div>
+            ${typeof(dataItem.featured) === "undefined" || dataItem.featured === "" 
+                ? `
+                    <div class="featured">
+                        <div class="embed">
+                            <iframe src="https://player.vimeo.com/video/IDVIMEO?title=0&byline=0&portrait=0" style="" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `
+                : `` 
+            }
             ${typeof(dataItem.desc) === "undefined" || dataItem.desc === "" ? "" : `<div class="desc">${dataItem.desc}</div>`}
             <div class="media">
                 ${dataItem.media.map(function(media, index) {
@@ -6065,6 +6078,11 @@ APP.controller.Home = {
                         return `<div data-order="${media.order}" class="embed">${media.url}</div>`;
                     }
                 }).join("")}
+            </div>
+
+            <div class="chantong">
+                <img src="/assets/img/logo.png" alt="" />
+                Chan Tong
             </div>
         `)
 

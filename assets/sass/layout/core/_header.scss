@@ -3,13 +3,114 @@
 // ====================================================================
 header#main {
 	height: 80px;
-	border-bottom: 4px solid $chan-dark;
-	background-color: $chan-red;
+	// border-bottom: 4px solid $chan-dark;
+	background-color: lighten($chan-red, 1.25%);
 	position: fixed;
 	z-index: 10000;
 	top: 0;
 	left: 0;
 	width: 100%;
+
+	&:before {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 30px 25vw 0 0;
+		border-color: darken($chan-red, 2.5) transparent transparent transparent;
+
+		@media screen and (max-width: 600px) {
+			border-width: 10px 25vw 0 0;
+		}
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 30vw 30px 0;
+		border-color: transparent darken($chan-red, 2.5) transparent transparent;
+
+		@media screen and (max-width: 600px) {
+			border-width: 0 30vw 10px 0;
+		}
+	}
+
+	div.triangles-a {
+		position: absolute;
+		bottom: 0;
+		display: block;
+		width: 100%;
+		z-index: 1;
+
+		&:before {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 100%;
+			left: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 45px 0 0 40vw;
+			border-color: transparent transparent transparent darken($chan-red, 2.5);
+
+			@media screen and (max-width: 600px) {
+				border-width: 22px 0 0 40vw;				
+			}
+		}
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 100%;
+			right: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 60px 50vw;
+			border-color: transparent transparent darken($chan-red, 2.5) transparent;
+
+			@media screen and (max-width: 600px) {
+				border-width: 0 0 30px 50vw;
+			}
+		}
+	}
+
+	div.triangles-b {
+		position: absolute;
+		top: 0;
+		display: block;
+		width: 100%;
+		z-index: 2;
+
+		&:after {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 100%;
+			right: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 0 80px 25vw;
+			border-color: transparent transparent darken($chan-red, 2.5) transparent;
+
+			@media screen and (max-width: 600px) {
+				display: none;
+			}
+		}
+	}
 
 	@media screen and (max-width: 600px) {
 		height: 80px;
@@ -18,7 +119,8 @@ header#main {
 	div.container {
 		position: relative;
 		height: 100%;
-		max-width: calc(100% - 40px)
+		max-width: calc(100% - 40px);
+		z-index: 3;
 	}
 
 	div.wrap {
@@ -166,7 +268,7 @@ header#main {
 			border-top: 1px solid #fff;
 		}
 		ul {
-			max-width: 200px;
+			max-width: 250px;
 			@media screen and (max-width: 600px) {
 				max-width: auto;
 				li {

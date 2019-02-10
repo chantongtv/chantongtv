@@ -30,90 +30,200 @@ aside#itemGallery {
 		// right: 0;
 		margin: 0 auto;
 		top: -100vh;
-		background: $chan-skin;
+		background: $chan-dark;
 		height: 100vh;
 		overflow: auto;
 		z-index: 1;
 		transition: all 0.3s ease;
-		padding: 10px;
+		padding: 0 30px;
 
 		@media screen and (max-width: 768px) {
 			right: -100vw;
 			top: auto;
 			margin: 0;
 			position: absolute;
+			padding: 0 15px;
 		}
 
-		a.close {
-			position: absolute;
-			top: 0;
-			right: 0;
-			font-size: 20px;
-			line-height: 100%;
-			color: #fff;
+		div.header {
+			margin: 0 -30px 30px -30px;
+			min-height: 200px;
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 50px;
-		    height: 50px;
-		    cursor: pointer;
-		}
-
-		h2 {
-			font-weight: bold;
-			font-size: 20px;
-			background: $chan-red;
-			color: #fff;
-			padding: 10px 50px 10px 10px;
-			margin: -10px -10px 0;
-			text-transform: uppercase;
-		}
-
-		h3 {
-			font-weight: bold;
-			font-size: 14px;
-			background: $chan-salmon;
-			text-transform: uppercase;
-			color: #fff;
-			padding: 5px 10px;
-			margin: 0 -10px 10px;
-			border-bottom: 2px solid $chan-dark;
-		}
-
-		div.desc {
-			margin: 0 0 10px;
-			font-size: 14px;
-			* {
-				font-size: 14px;
-				margin: 0 0 10px;
-			}
-		}
-
-		img, video, div.embed {
-			margin: 10px 0 0;
-			width: 100%;
-			display: block;
-			border: 2px solid $chan-dark;
-		}
-
-		div.embed {
-			padding: 56.25% 0 0 0;
+			align-items: flex-end;
+			justify-content: flex-start;
+			background-color: darken($chan-red, 15%);
+			padding: 30px;
 			position: relative;
-			z-index: 1;
-			background: $chan-dark;
-			overflow: hidden;
-			// display: none;
+			@media screen and (max-width: 768px) {
+				margin: 0 -15px 30px -15px;	
+				padding: 15px;			
+			}
 
-			iframe {
+			a.close {
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 20px;
+				line-height: 100%;
+				color: #fff;
+				background: #000;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 50px;
+			    height: 50px;
+			    cursor: pointer;
+			    z-index: 1;
+			}
+
+			div.thumb {
 				position: absolute;
 				top: 0;
 				left: 0;
 				width: 100%;
 				height: 100%;
+				display: block;
+				background-size: cover;
+				background-position: center center;
+				opacity: 0.25;
+				filter: grayscale(100%);
+			}
 
-				&.active {
-					display: block;
+			h2 {
+				font-weight: bold;
+				font-size: 36px;
+				font-family: "Standaris";
+				color: #fff;
+				margin: 0;
+				text-transform: uppercase;
+				position: relative;
+				line-height: 100%;
+
+				@media screen and (max-width: 768px) {
+					font-size: 32px;
 				}
+			}
+
+			h3 {
+				font-weight: bold;
+				font-size: 24px;
+				background: #000;
+				height: 50px;
+				padding: 0 20px;
+				text-transform: uppercase;
+				color: #fff;
+				margin: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 1;
+				display: flex;
+				align-items: center;
+				font-family: "Standaris";
+
+				&:before {
+					content: "";
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 50px 50px 0 0;
+					border-color: #000 transparent transparent transparent;
+					position: absolute;
+					top: 0;
+					left: 100%;
+				}
+			}
+			
+		}
+
+		div.featured {
+			margin-bottom: 30px;
+			div.embed {
+				margin: 30px 0 0;
+				width: 100%;
+				display: block;
+				padding: 56.25% 0 0 0;
+				position: relative;
+				z-index: 1;
+				background: $chan-dark;
+				overflow: hidden;
+				// display: none;
+
+				iframe {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: block;
+
+					&.active {
+						display: block;
+					}
+				}
+			}
+		}
+
+
+		div.desc {
+			margin: 0 0 10px;
+			font-size: 14px;
+			color: #fff;
+			* {
+				font-family: 'Standaris';
+				font-size: 18px;
+				margin: 0 0 10px;
+				line-height: 120%;
+			}
+		}
+		div.media {
+			margin-bottom: 30px;
+
+			img, video, div.embed {
+				margin: 30px 0 0;
+				width: 100%;
+				display: block;
+			}
+			div.embed {
+				padding: 56.25% 0 0 0;
+				position: relative;
+				z-index: 1;
+				background: $chan-dark;
+				overflow: hidden;
+				// display: none;
+
+				iframe {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: block;
+
+					&.active {
+						display: block;
+					}
+				}
+			}
+		}
+
+
+
+		div.chantong {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 60px 0 30px 0;
+			font-size: 16px;
+			color: #fff;
+			flex-direction: column;
+			font-family: "Standaris";
+			letter-spacing: 2px;
+			img {
+				width: auto;
+				margin: 0 0 5px;
+				padding: 0;
+				width: 50px;
 			}
 		}
 

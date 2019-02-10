@@ -35,6 +35,17 @@ $font-path: '../fonts';			// Caminho das fontes
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Standaris';
+    src: url('#{$font-path}/Standaris/StandarisRegular.eot');
+    src: url('#{$font-path}/Standaris/StandarisRegular.eot?#iefix') format('embedded-opentype'),
+        url('#{$font-path}/Standaris/StandarisRegular.woff2') format('woff2'),
+        url('#{$font-path}/Standaris/StandarisRegular.woff') format('woff'),
+        url('#{$font-path}/Standaris/StandarisRegular.ttf') format('truetype'),
+        url('#{$font-path}/Standaris/StandarisRegular.svg#StandarisRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 // -------------------------------------
 // Padrao

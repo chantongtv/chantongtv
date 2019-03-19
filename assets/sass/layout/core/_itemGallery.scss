@@ -68,6 +68,13 @@ aside#itemGallery {
 	    background: #000;
 	}
 
+	.simplebar-offset {
+		bottom: 0 !important;
+	    right: 0 !important;
+	    top: 0 !important;
+	    left: 0 !important;
+	}
+
 	div.content {
 		position: relative;
 		max-width: 960px;

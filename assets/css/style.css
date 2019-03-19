@@ -12379,6 +12379,11 @@ aside#itemGallery div.content
 
     background: #222;
 }
+aside#itemGallery div.content.mobile .simplebar-offset
+{
+    right: 0 !important;
+    bottom: 0 !important;
+}
 @media screen and (max-width: 768px)
 {
     aside#itemGallery div.content

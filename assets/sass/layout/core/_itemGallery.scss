@@ -85,6 +85,13 @@ aside#itemGallery {
 		transition: all 0.3s ease;
 		padding: 0;
 
+		&.mobile {
+			.simplebar-offset {
+				right: 0 !important;
+				bottom: 0 !important;
+			}
+		}
+
 		@media screen and (max-width: 768px) {
 			right: -100vw;
 			top: auto;

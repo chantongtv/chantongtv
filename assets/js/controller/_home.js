@@ -175,6 +175,9 @@ APP.controller.Home = {
                 forceVisible: true,
                 autoHide: false,
             });
+            if (isMobile.any) {
+                $('aside#itemGallery div.content').addClass('mobile')
+            }
             $('#loading').stop().fadeOut();
         });
 

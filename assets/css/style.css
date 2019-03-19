@@ -12360,13 +12360,6 @@ aside#itemGallery .simplebar-scrollbar
             border-radius: 0;
     background: #000;
 }
-aside#itemGallery .simplebar-offset
-{
-    top: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    left: 0 !important;
-}
 aside#itemGallery div.content
 {
     position: relative;

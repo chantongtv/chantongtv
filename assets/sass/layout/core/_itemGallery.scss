@@ -46,6 +46,24 @@ aside#itemGallery {
 	    background: #000;
 	}
 
+	.simplebar-content {
+		padding-right: $drag-size !important;
+	}
+
+	.simplebar-track.simplebar-vertical {
+	    width: $drag-size;
+	    background: #747474;
+	}
+
+	.simplebar-scrollbar {
+	    position: absolute;
+	    right: 0;
+	    width: 10px;
+	    min-height: 10px;
+	    border-radius: 0;
+	    background: #000;
+	}
+
 	div.content {
 		position: relative;
 		max-width: 960px;

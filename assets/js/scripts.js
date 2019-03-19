@@ -8526,7 +8526,7 @@ APP.controller.Home = {
 
         $('body').on('click', 'aside#itemGallery div.overlay, aside#itemGallery a.close', function(event) {
             event.preventDefault();
-            $('aside#itemGallery div.content').mCustomScrollbar('destroy');
+            // $('aside#itemGallery div.content').mCustomScrollbar('destroy');
             $('aside#itemGallery').removeClass('active');
             $('aside#itemGallery div.content').html("");
             $('body, html').removeClass('lockScroll');
@@ -8596,8 +8596,12 @@ APP.controller.Home = {
             })
             $('aside#itemGallery').addClass('active');
             $('body, html').addClass('lockScroll');
-            $('aside#itemGallery div.content').mCustomScrollbar({
-                scrollInertia: 10
+            // $('aside#itemGallery div.content').mCustomScrollbar({
+            //     scrollInertia: 10
+            // });
+            new SimpleBar($('aside#itemGallery div.content')[0], {
+                forceVisible: true,
+                autoHide: false,
             });
             $('#loading').stop().fadeOut();
         });

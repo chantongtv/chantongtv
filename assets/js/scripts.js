@@ -8433,6 +8433,7 @@ APP.controller.General = {
 */
 var data;
 var $itens;
+let simplebar;
 APP.controller.Home = {
 
     init : function () {
@@ -8452,15 +8453,25 @@ APP.controller.Home = {
             hideDistantElements: false,
         });
 
-        $('#loading').fadeOut();
-        $('body').removeClass('loading');                
+        simplebar = new SimpleBar($('aside#itemGallery div.content')[0], {
+            forceVisible: true,
+            autoHide: false,
+        });
+
+        $('section#portfolio div.items').imagesLoaded( function() {
+            var $itens = $('section#portfolio div.items').isotope({
+                layoutMode: 'fitRows'
+            });
+            
+            $('#loading').fadeOut();
+            $('body').removeClass('loading');                
+        });
+
     },
 
     filterItens : function () {
 
-        var $itens = $('section#portfolio div.items').isotope({
-            layoutMode: 'fitRows'
-        });
+        
 
         // filter items on button click
         $('section#portfolio ul.filters').on('click', 'a', function(event) {
@@ -8479,7 +8490,7 @@ APP.controller.Home = {
             $('.featured .video').find('.' + filterValue.split('._')[1]).addClass('active');
             
 
-            $itens.isotope({ filter: filterValue });
+            $('section#portfolio div.items').isotope({ filter: filterValue });
         });
 
     },
@@ -8528,7 +8539,7 @@ APP.controller.Home = {
             event.preventDefault();
             // $('aside#itemGallery div.content').mCustomScrollbar('destroy');
             $('aside#itemGallery').removeClass('active');
-            $('aside#itemGallery div.content').html("");
+            $('aside#itemGallery div.content div.scrollbar').html("");
             $('body, html').removeClass('lockScroll');
         });
     },
@@ -8537,7 +8548,7 @@ APP.controller.Home = {
         $('#loading').stop().fadeIn();
 
         var dataItem = data["gallery"][idItem];
-        var content = $('aside#itemGallery div.content');
+        var content = $('aside#itemGallery div.content div.scrollbar');
 
         content.append(`
             <div class="header">
@@ -8586,26 +8597,24 @@ APP.controller.Home = {
 
 
         var $grid = $('aside#itemGallery div.media').imagesLoaded( function() {
-            tinysort('aside#itemGallery>div.content>div.media>*',{attr:'data-order'});
-            $grid.masonry({
-              // set itemSelector so .grid-sizer is not used in layout
-              itemSelector: '.grid-item',
-              // use element for option
-              columnWidth: '.grid-sizer',
-              percentPosition: true,
-            })
+            tinysort('aside#itemGallery>div.content>div.scrollbar>div.media>*',{attr:'data-order'});
             $('aside#itemGallery').addClass('active');
             $('body, html').addClass('lockScroll');
-            // $('aside#itemGallery div.content').mCustomScrollbar({
-            //     scrollInertia: 10
-            // });
-            new SimpleBar($('aside#itemGallery div.content')[0], {
-                forceVisible: true,
-                autoHide: false,
-            });
+
+            setTimeout(function() {
+                $grid.masonry({
+                  // set itemSelector so .grid-sizer is not used in layout
+                  itemSelector: '.grid-item',
+                  // use element for option
+                  columnWidth: '.grid-sizer',
+                  percentPosition: true,
+                })
+            }, 200);
+            
             if (isMobile.any) {
                 $('aside#itemGallery div.content').addClass('mobile')
             }
+            console.log("carregou as imagens")
             $('#loading').stop().fadeOut();
         });
 

@@ -14577,6 +14577,7 @@ section#me div.column p
     section#me div.column
     {
         width: 100%;
+        padding-top: 20px; 
         padding-left: 0;
     }
 }

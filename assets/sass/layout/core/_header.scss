@@ -23,7 +23,7 @@ header#main {
 		border-width: 30px 25vw 0 0;
 		border-color: darken($chan-red, 2.5) transparent transparent transparent;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 768px) {
 			border-width: 10px 25vw 0 0;
 		}
 	}
@@ -112,7 +112,7 @@ header#main {
 		}
 	}
 
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 768px) {
 		height: 80px;
 	}
 
@@ -131,7 +131,7 @@ header#main {
 		height: 100%;
 		width: 100%;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 768px) {
 			position: fixed;
 			height: 100vh;
 			width: 100vw;
@@ -151,7 +151,7 @@ header#main {
 
 		a.toggleMenu {
 			display: none;
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 768px) {
 				display: block;
 				position: fixed;
 				z-index: 50;
@@ -233,13 +233,13 @@ header#main {
 
 	nav#main {
 		justify-content: flex-start;
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 768px) {
 			height: auto;
 		}
 		ul {
 			// max-width: 300px;
-			max-width: 140px;
-			@media screen and (max-width: 600px) {
+			max-width: 320px;
+			@media screen and (max-width: 768px) {
 				flex-direction: column;
 
 				li {
@@ -260,7 +260,7 @@ header#main {
 
 	nav#social {
 		justify-content: flex-end;
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 768px) {
 			height: auto;
 			width: auto;
 			margin-top: 20px;
@@ -269,7 +269,7 @@ header#main {
 		}
 		ul {
 			max-width: 250px;
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 768px) {
 				max-width: auto;
 				li {
 					margin: 0 5px;
@@ -286,7 +286,7 @@ header#main {
 		left: calc(50% - 20px);
 		z-index: 1;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 768px) {
 			width: 40px;
 		}
 

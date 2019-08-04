@@ -359,10 +359,130 @@ section#admin {
 				}
 			}
 		}
+
+		div#personalworks {
+			div.content {
+				padding: 5px;
+			}
+			div.items {
+				font-size: 0;
+				width: calc(100% + 10px);
+				margin: -5px;
+				padding: 5px;
+				div.item, div.placeholder {
+					display: inline-block;
+					width: calc(33.33333333% - 10px);
+					margin: 5px;
+					border: 1px solid #000;
+					overflow: hidden;
+					position: relative;
+					cursor: pointer;
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-position: center center;
+
+					@media screen and (max-width: 700px) {
+						width: calc(50% - 10px);
+					}
+					@media screen and (max-width: 520px) {
+						width: calc(100% - 10px);
+					}
+					
+					&:before {
+						content: "";
+						position: absolute;
+						top: 0;
+						left: 0;
+						width: 100%;
+						height: 100%;
+						display: block;
+						background: rgba(#000, 0.75);
+						opacity: 0;
+						transition: all ease 0.3s;
+					}
+
+					img {
+						display: block;
+						width: 100%;
+					}
+					span {
+						position: absolute;
+						top: 0;
+						left: 0;
+						font-size: 18px;
+						width: 100%;
+						height: 100%;
+						color: #fff;
+						display: block;
+						z-index: 1000;
+						padding: 10px;
+						transform: translateX(-100%);
+						opacity: 0;
+						font-weight: bold;
+						transition: all ease 0.3s;
+						cursor: move;
+					}
+
+					a {
+						position: absolute;
+						display: flex;
+						font-size: 20px;
+						width: 36px;
+						height: 36px;
+						align-items: center;
+						justify-content: center;
+						color: #fff;
+						border-radius: 3px;
+						opacity: 0;
+						transition: all 0.3s ease;
+						z-index: 1001;
+
+						&.editItem {
+							right: 46px;
+							bottom: 5px;
+							background: $chan-orange;
+						}
+
+						&.deleteItem {
+							right: 5px;
+							bottom: 5px;
+							background: $chan-red;							
+						}
+					}
+
+
+					&:hover {
+						transform: scale(1);
+						transition: all 0.3s ease;
+						z-index: 10;
+						box-shadow: 0 0 0 5px $chan-dark;
+
+						a {
+							opacity: 1;
+						}
+
+						&:before {
+							opacity: 1;
+						}
+
+						span {
+							opacity: 1;
+							transform: translateX(0%);
+						}
+					}
+				}
+			}
+			div.actions {
+				margin: 5px;
+				a {
+					border: 1px solid $chan-dark;
+				}
+			}
+		}
 	}
 }
 
-div#editAddGalleryItemModal {
+div#editAddGalleryItemModal, div#editAddPersonalWorksItemModal {
 	position: fixed;
 	display: block;
 	top: 0;

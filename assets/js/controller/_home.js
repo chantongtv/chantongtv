@@ -4,7 +4,8 @@
 |--------------------------------------------------------------------------
 */
 var data;
-var $itens;
+var $itensJobs;
+var $itensPersonalWorks;
 let simplebar;
 APP.controller.Home = {
 
@@ -17,6 +18,7 @@ APP.controller.Home = {
         this.scrollFilters();
         this.menu();
         this.clicksItemGallery();
+        this.clicksItemPersonalWorks();
 
         $('section#portfolio ul.filters').find('li a').first().click();
 
@@ -31,8 +33,11 @@ APP.controller.Home = {
         });
 
         $('section#portfolio div.items').imagesLoaded( function() {
-            var $itens = $('section#portfolio div.items').isotope({
+            var $itensJobs = $('section#portfolio #jobs div.items').isotope({
                 layoutMode: 'fitRows'
+            });
+
+            var $itensPersonalWorks = $('section#portfolio #personalworks div.items').isotope({
             });
             
             $('#loading').fadeOut();
@@ -62,7 +67,7 @@ APP.controller.Home = {
             $('.featured .video').find('.' + filterValue.split('._')[1]).addClass('active');
             
 
-            $('section#portfolio div.items').isotope({ filter: filterValue });
+            $('section#portfolio div#jobs div.items').isotope({ filter: filterValue });
         });
 
     },
@@ -101,7 +106,7 @@ APP.controller.Home = {
     },
 
     clicksItemGallery : function () {
-        $('body').on('click', '.items-wrap .items .item', function(event) {
+        $('body').on('click', '#jobs.items-wrap .items .item', function(event) {
             event.preventDefault();
             var idItem = $(this).attr('data-id');
             APP.controller.Home.openItemGallery(idItem);
@@ -192,6 +197,80 @@ APP.controller.Home = {
 
     },
 
+    clicksItemPersonalWorks : function () {
+        $('body').on('click', '#personalworks.items-wrap .items .item', function(event) {
+            event.preventDefault();
+            var idItem = $(this).attr('data-id');
+            APP.controller.Home.openItemPersonalWorks(idItem);
+        });
+
+        $('body').on('click', 'div#modalPersonalWorks div.overlay, div#modalPersonalWorks a.close', function(event) {
+            event.preventDefault();
+            // $('aside#itemGallery div.content').mCustomScrollbar('destroy');
+            $('div#modalPersonalWorks').removeClass('active');
+            $('div#modalPersonalWorks div.content').html("");
+            $('div#modalPersonalWorks div.media').slick('destroy');
+            $('body, html').removeClass('lockScroll');
+        });
+    },
+
+    openItemPersonalWorks : function (idItem) {
+        $('#loading').stop().fadeIn();
+
+        var dataItem = data["personalworks"][idItem];
+        var content = $('div#modalPersonalWorks div.content');
+
+        content.append(`
+            <div class="header">
+                <a class="close"><i class="fas fa-times"></i></a>
+                <h2>${dataItem.name}</h2>
+            </div>
+            <div class="wrap">
+                <div class="media" >
+                    ${dataItem.media.map(function(media, index) {
+                        if (media.type === "image" && !media.featured) {
+                            return `<img data-order="${media.url.split('.').pop().split('?')[0] === "gif" ? media.order + 100 : media.order}" src="${media.url}" class="grid-item ${media.url.split('.').pop().split('?')[0]}" />`;
+                        } else if (media.type === "video" && !media.featured) {
+                            return `<div class="grid-item video" data-order="${media.order}"><video controls src="${media.url}"></video></div>`;
+                        } else if (media.type === "embed" && !media.featured) {
+                            return `<div data-order="${media.order}" class="grid-item embed">${media.url}</div>`;
+                        }
+                    }).join("")}
+                </div>
+            </div>
+        `)
+
+
+        var $grid = $('div#modalPersonalWorks div.media').imagesLoaded( function() {
+            tinysort('div#modalPersonalWorks>div.content>div.scrollbar>div.media>*',{attr:'data-order'});
+            $('div#modalPersonalWorks').addClass('active');
+            $('body, html').addClass('lockScroll');
+
+            // setTimeout(function() {
+            //     $grid.masonry({
+            //       // set itemSelector so .grid-sizer is not used in layout
+            //       itemSelector: '.grid-item',
+            //       // use element for option
+            //       columnWidth: '.grid-sizer',
+            //       percentPosition: true,
+            //     })
+            // }, 200);
+            
+            if (isMobile.any) {
+                $('div#modalPersonalWorks div.content').addClass('mobile')
+            }
+
+            $('div#modalPersonalWorks div.media').slick({
+                nextArrow: `<a class="next"><i class="fas fa-chevron-right"></i></a>`,
+                prevArrow: `<a class="prev"><i class="fas fa-chevron-left"></i></a>`
+            });
+            console.log("carregou as imagens")
+            $('#loading').stop().fadeOut();
+        });
+
+    },
+    
+
     fillContentFirebase : function () {
         
         database.ref('/').once('value').then(function(snapshot) {
@@ -209,8 +288,8 @@ APP.controller.Home = {
                 `)
             });
 
-            // Itens da galeria
-            var wrap = $('.items-wrap .items');
+            // Itens Jobs
+            var wrap = $('#jobs.items-wrap .items');
             $.each(data['gallery'], function(index, val) {
                 var categories = "";
                 $.each(val.category, function(i, cat) {
@@ -224,7 +303,28 @@ APP.controller.Home = {
                 `)
             });
 
-            tinysort('.items-wrap .items .item',{attr:'data-order'});
+            tinysort('#jobs.items-wrap .items .item',{attr:'data-order'});
+
+            // Itens Personal Works
+            var wrap = $('#personalworks.items-wrap .items');
+            $.each(data['personalworks'], function(index, val) {
+                var categories = "";
+                $.each(val.category, function(i, cat) {
+                    categories += " _" + cat;
+                });
+                var imageFeatured = "";
+                $.each(val.media, function(i, feat) {
+                    feat.featured ? imageFeatured = feat.url : "";
+                });
+                wrap.append(`
+                    <div data-order="${val.order}" data-id="${index}" class="item${categories}">
+                        <span>${val.name}</span>
+                        <img src="${imageFeatured != "" ? imageFeatured : val.media[0].url}" alt="" class="ratio">
+                    </div>
+                `)
+            });
+
+            tinysort('#personalworks.items-wrap .items .item',{attr:'data-order'});
 
         }).then(function() {
 

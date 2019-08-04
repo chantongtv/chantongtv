@@ -11798,7 +11798,7 @@ header#main:before
     border-style: solid;
     border-color: #f83f3f transparent transparent transparent;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main:before
     {
@@ -11921,7 +11921,7 @@ header#main div.triangles-b:after
         display: none;
     }
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main
     {
@@ -11958,7 +11958,7 @@ header#main div.wrap
     -ms-flex-align: center;
             align-items: center;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main div.wrap
     {
@@ -12000,7 +12000,7 @@ header#main div.wrap a.toggleMenu
 {
     display: none;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main div.wrap a.toggleMenu
     {
@@ -12129,7 +12129,7 @@ header#main nav#main
     -ms-flex-pack: start;
             justify-content: flex-start;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main nav#main
     {
@@ -12138,9 +12138,9 @@ header#main nav#main
 }
 header#main nav#main ul
 {
-    max-width: 140px;
+    max-width: 320px;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main nav#main ul
     {
@@ -12172,7 +12172,7 @@ header#main nav#social
     -ms-flex-pack: end;
             justify-content: flex-end;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main nav#social
     {
@@ -12188,7 +12188,7 @@ header#main nav#social ul
 {
     max-width: 250px;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main nav#social ul
     {
@@ -12211,7 +12211,7 @@ header#main a.logo
 
     width: 40px;
 }
-@media screen and (max-width: 600px)
+@media screen and (max-width: 768px)
 {
     header#main a.logo
     {
@@ -12829,6 +12829,550 @@ aside#itemGallery.active div.content
     }
 }
 
+div#modalPersonalWorks
+{
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    right: -100vw;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100vw;
+    height: 100vh;
+
+    -webkit-transition: opacity .3s ease;
+         -o-transition: opacity .3s ease;
+            transition: opacity .3s ease;
+
+    opacity: 0;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#modalPersonalWorks div.overlay
+{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: -100vw;
+
+    width: 100vw;
+    height: 100vh; 
+
+    background: rgba(0, 0, 0, .75);
+}
+div#modalPersonalWorks .mCSB_inside > .mCSB_container
+{
+    margin-right: 10px;
+}
+div#modalPersonalWorks .mCSB_scrollTools
+{
+    width: 10px;
+
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+            box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+div#modalPersonalWorks .mCSB_scrollTools .mCSB_draggerRail
+{
+    width: 10px;
+
+    -webkit-border-radius: 0;
+            border-radius: 0;
+    background: #747474;
+}
+div#modalPersonalWorks .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar
+{
+    width: 10px;
+
+    -webkit-border-radius: 0;
+            border-radius: 0;
+    background: #000;
+}
+div#modalPersonalWorks .simplebar-wrapper
+{
+    width: 100%;
+}
+div#modalPersonalWorks .simplebar-content
+{
+    padding-right: 10px !important;
+}
+div#modalPersonalWorks .simplebar-track.simplebar-vertical
+{
+    width: 10px;
+
+    background: #747474;
+}
+div#modalPersonalWorks .simplebar-scrollbar
+{
+    position: absolute;
+    right: 0;
+
+    width: 10px;
+    min-height: 10px;
+
+    -webkit-border-radius: 0;
+            border-radius: 0;
+    background: #000;
+}
+div#modalPersonalWorks div.content
+{
+    position: relative;
+    z-index: 1;
+    top: -100vh;
+
+    width: -webkit-calc(100% - 40px);
+    width:         calc(100% - 40px);
+    max-width: 960px;
+    max-height: -webkit-calc(100vh - 40px);
+    max-height:         calc(100vh - 40px);
+    margin: 0 auto;
+    padding: 0; 
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+
+    background: #222;
+}
+div#modalPersonalWorks div.content.mobile .simplebar-offset
+{
+    right: 0 !important;
+    bottom: 0 !important;
+}
+div#modalPersonalWorks div.content div.wrap
+{
+    padding: 0 0;
+}
+@media screen and (max-width: 768px)
+{
+    div#modalPersonalWorks div.content div.wrap
+    {
+        padding: 0 0;
+    }
+}
+div#modalPersonalWorks div.content div.header
+{
+    position: relative; 
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    margin: 0;
+    padding: 30px;
+
+    background-color: #ed0909;
+
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+@media screen and (max-width: 768px)
+{
+    div#modalPersonalWorks div.content div.header
+    {
+        padding: 15px;
+    }
+}
+div#modalPersonalWorks div.content div.header a.close
+{
+    font-size: 20px;
+    line-height: 100%;
+
+    position: absolute;
+    z-index: 1; 
+    top: 0;
+    right: 0;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 50px;
+    height: 50px;
+
+    cursor: pointer;
+
+    color: #fff;
+    background: #000;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+div#modalPersonalWorks div.content div.header div.thumb
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: .25;
+    background-position: center center;
+    -webkit-background-size: cover;
+            background-size: cover;
+
+    -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+}
+div#modalPersonalWorks div.content div.header h2
+{
+    font-family: 'Standaris';
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 100%; 
+
+    position: relative;
+
+    margin: 0;
+
+    text-transform: uppercase;
+
+    color: #fff;
+}
+@media screen and (max-width: 768px)
+{
+    div#modalPersonalWorks div.content div.header h2
+    {
+        font-size: 32px;
+    }
+}
+div#modalPersonalWorks div.content div.header h3
+{
+    font-family: 'Standaris'; 
+    font-size: 24px;
+    font-weight: bold;
+
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    height: 50px;
+    margin: 0;
+    padding: 0 20px;
+
+    text-transform: uppercase;
+
+    color: #fff;
+    background: #000;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+}
+div#modalPersonalWorks div.content div.header h3:before
+{
+    position: absolute;
+    top: 0;
+    left: 100%; 
+
+    width: 0;
+    height: 0;
+
+    content: '';
+
+    border-width: 50px 50px 0 0;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+}
+div#modalPersonalWorks div.content div.featured
+{
+    margin-bottom: 30px;
+}
+div#modalPersonalWorks div.content div.featured img,
+div#modalPersonalWorks div.content div.featured div.video,
+div#modalPersonalWorks div.content div.featured div.embed
+{
+    display: block; 
+
+    width: 100%;
+    margin-bottom: 10px;
+}
+div#modalPersonalWorks div.content div.featured div.video
+{
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden; 
+
+    padding: -webkit-calc(56.25%) 0 0 0;
+    padding:         calc(56.25%) 0 0 0;
+
+    background: #222;
+}
+div#modalPersonalWorks div.content div.featured div.video video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+}
+div#modalPersonalWorks div.content div.featured div.embed
+{
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden; 
+
+    padding: -webkit-calc(56.25%) 0 0 0;
+    padding:         calc(56.25%) 0 0 0;
+
+    background: #222;
+}
+div#modalPersonalWorks div.content div.featured div.embed iframe
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+}
+div#modalPersonalWorks div.content div.featured div.embed iframe.active
+{
+    display: block;
+}
+div#modalPersonalWorks div.content div.desc
+{
+    font-size: 14px;
+
+    margin: 0 0 10px;
+
+    color: #fff;
+}
+div#modalPersonalWorks div.content div.desc *
+{
+    font-family: 'Standaris';
+    font-size: 18px;
+    line-height: 120%; 
+
+    margin: 0 0 10px;
+}
+div#modalPersonalWorks div.content div.media
+{
+    margin: 15px;
+    /* 6 columns */
+}
+div#modalPersonalWorks div.content div.media a.next,
+div#modalPersonalWorks div.content div.media a.prev
+{
+    font-size: 30px;
+
+    position: absolute;
+    z-index: 1; 
+    top: -webkit-calc(50% - 15px);
+    top:         calc(50% - 15px);
+
+    color: #fff;
+}
+div#modalPersonalWorks div.content div.media a.next
+{
+    right: 15px;
+}
+div#modalPersonalWorks div.content div.media a.prev
+{
+    left: 15px;
+}
+@media screen and (max-width: 600px)
+{
+    div#modalPersonalWorks div.content div.media
+    {
+        margin: 0;
+    }
+}
+div#modalPersonalWorks div.content div.media .grid-sizer,
+div#modalPersonalWorks div.content div.media .grid-item
+{
+    width: -webkit-calc(100% / 6);
+    width:         calc(100% / 6);
+}
+div#modalPersonalWorks div.content div.media.full
+{
+    margin: 0;
+}
+div#modalPersonalWorks div.content div.media.full img,
+div#modalPersonalWorks div.content div.media.full div.video,
+div#modalPersonalWorks div.content div.media.full div.embed
+{
+    width: 100%;
+}
+div#modalPersonalWorks div.content div.media.full div.video,
+div#modalPersonalWorks div.content div.media.full div.embed
+{
+    padding: -webkit-calc(56.25%) 0 0 0;
+    padding:         calc(56.25%) 0 0 0;
+}
+div#modalPersonalWorks div.content div.media img,
+div#modalPersonalWorks div.content div.media div.video,
+div#modalPersonalWorks div.content div.media div.embed
+{
+    display: block;
+}
+div#modalPersonalWorks div.content div.media div.video
+{
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden; 
+
+    padding: -webkit-calc(56.25% / 2) 0 0 0;
+    padding:         calc(56.25% / 2) 0 0 0;
+
+    background: #222;
+}
+@media screen and (max-width: 600px)
+{
+    div#modalPersonalWorks div.content div.media div.video
+    {
+        padding: -webkit-calc(56.25%) 0 0 0;
+        padding:         calc(56.25%) 0 0 0;
+    }
+}
+div#modalPersonalWorks div.content div.media div.video video
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+}
+div#modalPersonalWorks div.content div.media div.embed
+{
+    position: relative;
+    z-index: 1;
+
+    overflow: hidden; 
+
+    padding: -webkit-calc(56.25% / 2) 0 0 0;
+    padding:         calc(56.25% / 2) 0 0 0;
+
+    background: #222;
+}
+@media screen and (max-width: 600px)
+{
+    div#modalPersonalWorks div.content div.media div.embed
+    {
+        padding: -webkit-calc(56.25%) 0 0 0;
+        padding:         calc(56.25%) 0 0 0;
+    }
+}
+div#modalPersonalWorks div.content div.media div.embed iframe
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block; 
+
+    width: 100%;
+    height: 100%;
+}
+div#modalPersonalWorks div.content div.media div.embed iframe.active
+{
+    display: block;
+}
+div#modalPersonalWorks div.content div.chantong
+{
+    font-family: 'Standaris';
+    font-size: 16px;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+            flex-direction: column;
+
+    margin: 60px 0 30px 0;
+
+    letter-spacing: 2px; 
+
+    color: #fff;
+
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+}
+div#modalPersonalWorks div.content div.chantong img
+{
+    width: auto;
+    width: 50px; 
+    margin: 0 0 5px;
+    padding: 0;
+}
+div#modalPersonalWorks.active
+{
+    right: 0;
+
+    opacity: 1;
+}
+div#modalPersonalWorks.active div.overlay
+{
+    right: 0;
+}
+div#modalPersonalWorks.active div.content
+{
+    top: 0;
+}
+@media screen and (max-width: 768px)
+{
+    div#modalPersonalWorks.active div.content
+    {
+        top: auto; 
+        right: 0;
+    }
+}
+
 html
 {
     overflow-x: hidden; 
@@ -13250,6 +13794,85 @@ section#portfolio
     margin: 0;
     padding: 0;
 }
+section#portfolio #jobs h2
+{
+    font-size: 48px;
+
+    position: relative;
+    z-index: 1;
+
+    display: table;
+
+    width: 100%;
+    max-width: 338px;
+    margin: 20px 0 10px 0;
+    padding: 5px 20px;
+
+    text-transform: uppercase;
+
+    color: #fff;
+    background: #222;
+    -webkit-box-shadow: 15px 0 0 #ff4d4d, 30px 0 0 #ff764d, 45px 0 0 #ff9d49;
+            box-shadow: 15px 0 0 #ff4d4d, 30px 0 0 #ff764d, 45px 0 0 #ff9d49;
+}
+@media screen and (max-width: 1220px)
+{
+    section#portfolio #jobs h2
+    {
+        max-width: 268px;
+    }
+}
+@media screen and (max-width: 960px)
+{
+    section#portfolio #jobs h2
+    {
+        font-size: 36px; 
+
+        max-width: 315px;
+    }
+}
+@media screen and (max-width: 600px)
+{
+    section#portfolio #jobs h2
+    {
+        font-size: 24px; 
+
+        max-width: 150px;
+    }
+}
+section#portfolio #personalworks h2
+{
+    font-size: 48px;
+
+    position: relative;
+    z-index: 1;
+
+    display: table;
+
+    margin: 20px 0 10px 0;
+    padding: 5px 20px;
+
+    text-transform: uppercase;
+
+    color: #fff;
+    background: #222;
+    -webkit-box-shadow: 15px 0 0 #ff4d4d, 30px 0 0 #ff764d, 45px 0 0 #ff9d49;
+            box-shadow: 15px 0 0 #ff4d4d, 30px 0 0 #ff764d, 45px 0 0 #ff9d49;
+}
+@media screen and (max-width: 960px)
+{
+    section#portfolio #personalworks h2
+    {
+        font-size: 36px;
+    }
+}
+@media screen and (max-width: 600px)
+{
+    section#portfolio #personalworks h2
+    {
+        font-size: 24px;
+    }
+}
 section#portfolio div.featured
 {
     position: relative;
@@ -13485,7 +14108,7 @@ section#portfolio ul.filters li a:hover
     color: #222; 
     background: #ff6b93;
 }
-section#portfolio div.items-wrap
+section#portfolio div.items-wrap#jobs
 {
     position: relative;
 
@@ -13493,12 +14116,12 @@ section#portfolio div.items-wrap
 }
 @media screen and (max-width: 600px)
 {
-    section#portfolio div.items-wrap
+    section#portfolio div.items-wrap#jobs
     {
         padding: 10px;
     }
 }
-section#portfolio div.items-wrap div.bg
+section#portfolio div.items-wrap#jobs div.bg
 {
     position: absolute;
     top: 0;
@@ -13507,11 +14130,11 @@ section#portfolio div.items-wrap div.bg
     width: 100%;
     height: 100%;
 }
-section#portfolio div.items-wrap div.bg img
+section#portfolio div.items-wrap#jobs div.bg img
 {
     position: absolute;
 }
-section#portfolio div.items
+section#portfolio div.items-wrap#jobs div.items
 {
     font-size: 0;
 
@@ -13522,7 +14145,7 @@ section#portfolio div.items
     width:         calc(100% + 10px);
     margin: 0 0 0 -5px;
 }
-section#portfolio div.items div.item
+section#portfolio div.items-wrap#jobs div.items div.item
 {
     position: relative;
 
@@ -13544,7 +14167,7 @@ section#portfolio div.items div.item
     -webkit-background-size: cover;
             background-size: cover;
 }
-section#portfolio div.items div.item:before
+section#portfolio div.items-wrap#jobs div.items div.item:before
 {
     position: absolute;
     top: 0;
@@ -13563,7 +14186,7 @@ section#portfolio div.items div.item:before
     opacity: 0;
     background: rgba(0, 0, 0, .75);
 }
-section#portfolio div.items div.item span
+section#portfolio div.items-wrap#jobs div.items div.item span
 {
     font-family: 'Standaris'; 
     font-size: 18px;
@@ -13605,7 +14228,7 @@ section#portfolio div.items div.item span
     -ms-flex-pack: center;
             justify-content: center;
 }
-section#portfolio div.items div.item:hover
+section#portfolio div.items-wrap#jobs div.items div.item:hover
 {
     z-index: 10; 
 
@@ -13616,11 +14239,11 @@ section#portfolio div.items div.item:hover
         -ms-transform: scale(1);
             transform: scale(1);
 }
-section#portfolio div.items div.item:hover:before
+section#portfolio div.items-wrap#jobs div.items div.item:hover:before
 {
     opacity: 1;
 }
-section#portfolio div.items div.item:hover span
+section#portfolio div.items-wrap#jobs div.items div.item:hover span
 {
     -webkit-transform: translateX(0%);
         -ms-transform: translateX(0%);
@@ -13630,7 +14253,7 @@ section#portfolio div.items div.item:hover span
 }
 @media screen and (max-width: 960px)
 {
-    section#portfolio div.items div.item
+    section#portfolio div.items-wrap#jobs div.items div.item
     {
         width: -webkit-calc(50% - 10px);
         width:         calc(50% - 10px);
@@ -13638,13 +14261,178 @@ section#portfolio div.items div.item:hover span
 }
 @media screen and (max-width: 340px)
 {
-    section#portfolio div.items div.item
+    section#portfolio div.items-wrap#jobs div.items div.item
     {
         width: -webkit-calc(100% - 10px);
         width:         calc(100% - 10px);
     }
 }
-section#portfolio div.items div.item img
+section#portfolio div.items-wrap#jobs div.items div.item img
+{
+    display: block;
+
+    width: 100%;
+}
+section#portfolio div.items-wrap#personalworks
+{
+    position: relative;
+
+    padding: 20px;
+}
+@media screen and (max-width: 600px)
+{
+    section#portfolio div.items-wrap#personalworks
+    {
+        padding: 10px;
+    }
+}
+section#portfolio div.items-wrap#personalworks div.bg
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+}
+section#portfolio div.items-wrap#personalworks div.bg img
+{
+    position: absolute;
+}
+section#portfolio div.items-wrap#personalworks div.items
+{
+    font-size: 0;
+
+    position: relative;
+    z-index: 9; 
+
+    width: -webkit-calc(100%);
+    width:         calc(100%);
+    margin: 0 0 0 0;
+}
+section#portfolio div.items-wrap#personalworks div.items div.item
+{
+    position: relative;
+
+    display: inline-block;
+    overflow: hidden;
+
+    width: -webkit-calc(25%);
+    width:         calc(25%);
+    margin: 0;
+
+    cursor: pointer;
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+
+    background: #222;
+    background-repeat: no-repeat; 
+    background-position: center center;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+section#portfolio div.items-wrap#personalworks div.items div.item:before
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+    -webkit-transition: all ease .3s;
+         -o-transition: all ease .3s;
+            transition: all ease .3s; 
+
+    opacity: 0;
+    background: rgba(0, 0, 0, .75);
+}
+section#portfolio div.items-wrap#personalworks div.items div.item span
+{
+    font-family: 'Standaris'; 
+    font-size: 18px;
+    font-weight: bold;
+
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    display: block;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+
+    -webkit-transition: all ease .3s;
+         -o-transition: all ease .3s;
+            transition: all ease .3s;
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+    text-align: center;
+    text-transform: uppercase;
+
+    opacity: 0;
+    color: #fff;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+section#portfolio div.items-wrap#personalworks div.items div.item:hover
+{
+    z-index: 10; 
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+section#portfolio div.items-wrap#personalworks div.items div.item:hover:before
+{
+    opacity: 1;
+}
+section#portfolio div.items-wrap#personalworks div.items div.item:hover span
+{
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%); 
+
+    opacity: 1;
+}
+@media screen and (max-width: 960px)
+{
+    section#portfolio div.items-wrap#personalworks div.items div.item
+    {
+        width: -webkit-calc(50%);
+        width:         calc(50%);
+    }
+}
+@media screen and (max-width: 340px)
+{
+    section#portfolio div.items-wrap#personalworks div.items div.item
+    {
+        width: -webkit-calc(100%);
+        width:         calc(100%);
+    }
+}
+section#portfolio div.items-wrap#personalworks div.items div.item img
 {
     display: block;
 
@@ -13743,6 +14531,9 @@ section#me img.photo
     width: -webkit-calc(33.333333% - 5px);
     width:         calc(33.333333% - 5px);
     max-width: 220px;
+
+    -webkit-box-shadow: 0 0 0 5px #fff;
+            box-shadow: 0 0 0 5px #fff;
 }
 @media screen and (max-width: 600px)
 {
@@ -13759,8 +14550,13 @@ section#me div.column
 }
 section#me div.column p
 {
-    font-family: 'Standaris';
-    font-size: 18px; 
+    font-family: Arial Black, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 130%; 
+
+    margin: 0 0 5px 0;
+    padding: 0;
 
     color: #fff;
 }
@@ -14345,8 +15141,207 @@ section#admin div#main div#gallery div.actions a
 {
     border: 1px solid #222;
 }
+section#admin div#main div#personalworks div.content
+{
+    padding: 5px;
+}
+section#admin div#main div#personalworks div.items
+{
+    font-size: 0;
 
-div#editAddGalleryItemModal
+    width: -webkit-calc(100% + 10px);
+    width:         calc(100% + 10px);
+    margin: -5px;
+    padding: 5px;
+}
+section#admin div#main div#personalworks div.items div.item,
+section#admin div#main div#personalworks div.items div.placeholder
+{
+    position: relative;
+
+    display: inline-block;
+    overflow: hidden;
+
+    width: -webkit-calc(33.33333333% - 10px);
+    width:         calc(33.33333333% - 10px);
+    margin: 5px;
+
+    cursor: pointer;
+
+    border: 1px solid #000;
+    background-repeat: no-repeat;
+    background-position: center center; 
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+@media screen and (max-width: 700px)
+{
+    section#admin div#main div#personalworks div.items div.item,
+    section#admin div#main div#personalworks div.items div.placeholder
+    {
+        width: -webkit-calc(50% - 10px);
+        width:         calc(50% - 10px);
+    }
+}
+@media screen and (max-width: 520px)
+{
+    section#admin div#main div#personalworks div.items div.item,
+    section#admin div#main div#personalworks div.items div.placeholder
+    {
+        width: -webkit-calc(100% - 10px);
+        width:         calc(100% - 10px);
+    }
+}
+section#admin div#main div#personalworks div.items div.item:before,
+section#admin div#main div#personalworks div.items div.placeholder:before
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    content: '';
+    -webkit-transition: all ease .3s;
+         -o-transition: all ease .3s;
+            transition: all ease .3s; 
+
+    opacity: 0;
+    background: rgba(0, 0, 0, .75);
+}
+section#admin div#main div#personalworks div.items div.item img,
+section#admin div#main div#personalworks div.items div.placeholder img
+{
+    display: block;
+
+    width: 100%;
+}
+section#admin div#main div#personalworks div.items div.item span,
+section#admin div#main div#personalworks div.items div.placeholder span
+{
+    font-size: 18px;
+    font-weight: bold;
+
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+
+    cursor: move; 
+    -webkit-transition: all ease .3s;
+         -o-transition: all ease .3s;
+            transition: all ease .3s;
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
+
+    opacity: 0;
+    color: #fff;
+}
+section#admin div#main div#personalworks div.items div.item a,
+section#admin div#main div#personalworks div.items div.placeholder a
+{
+    font-size: 20px;
+
+    position: absolute;
+    z-index: 1001; 
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
+
+    width: 36px;
+    height: 36px;
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+
+    opacity: 0;
+    color: #fff;
+    -webkit-border-radius: 3px;
+            border-radius: 3px;
+
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+}
+section#admin div#main div#personalworks div.items div.item a.editItem,
+section#admin div#main div#personalworks div.items div.placeholder a.editItem
+{
+    right: 46px;
+    bottom: 5px;
+
+    background: #ff764d;
+}
+section#admin div#main div#personalworks div.items div.item a.deleteItem,
+section#admin div#main div#personalworks div.items div.placeholder a.deleteItem
+{
+    right: 5px;
+    bottom: 5px;
+
+    background: #f84b4b;
+}
+section#admin div#main div#personalworks div.items div.item:hover,
+section#admin div#main div#personalworks div.items div.placeholder:hover
+{
+    z-index: 10;
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+    -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+
+    -webkit-box-shadow: 0 0 0 5px #222;
+            box-shadow: 0 0 0 5px #222;
+}
+section#admin div#main div#personalworks div.items div.item:hover a,
+section#admin div#main div#personalworks div.items div.placeholder:hover a
+{
+    opacity: 1;
+}
+section#admin div#main div#personalworks div.items div.item:hover:before,
+section#admin div#main div#personalworks div.items div.placeholder:hover:before
+{
+    opacity: 1;
+}
+section#admin div#main div#personalworks div.items div.item:hover span,
+section#admin div#main div#personalworks div.items div.placeholder:hover span
+{
+    -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+            transform: translateX(0%); 
+
+    opacity: 1;
+}
+section#admin div#main div#personalworks div.actions
+{
+    margin: 5px;
+}
+section#admin div#main div#personalworks div.actions a
+{
+    border: 1px solid #222;
+}
+
+div#editAddGalleryItemModal,
+div#editAddPersonalWorksItemModal
 {
     position: fixed;
     z-index: 10000;
@@ -14364,7 +15359,8 @@ div#editAddGalleryItemModal
 
     opacity: 0;
 }
-div#editAddGalleryItemModal div.overlay
+div#editAddGalleryItemModal div.overlay,
+div#editAddPersonalWorksItemModal div.overlay
 {
     position: absolute;
     z-index: 0;
@@ -14376,7 +15372,8 @@ div#editAddGalleryItemModal div.overlay
 
     background: rgba(0, 0, 0, .75);
 }
-div#editAddGalleryItemModal div.content
+div#editAddGalleryItemModal div.content,
+div#editAddPersonalWorksItemModal div.content
 {
     position: relative;
     z-index: 1;
@@ -14399,7 +15396,8 @@ div#editAddGalleryItemModal div.content
 }
 @media screen and (max-width: 768px)
 {
-    div#editAddGalleryItemModal div.content
+    div#editAddGalleryItemModal div.content,
+    div#editAddPersonalWorksItemModal div.content
     {
         position: absolute; 
         top: auto;
@@ -14408,7 +15406,8 @@ div#editAddGalleryItemModal div.content
         margin: 0;
     }
 }
-div#editAddGalleryItemModal div.content header a.close
+div#editAddGalleryItemModal div.content header a.close,
+div#editAddPersonalWorksItemModal div.content header a.close
 {
     font-size: 20px;
     line-height: 100%;
@@ -14438,7 +15437,8 @@ div#editAddGalleryItemModal div.content header a.close
     -ms-flex-pack: center;
             justify-content: center;
 }
-div#editAddGalleryItemModal div.content header h2
+div#editAddGalleryItemModal div.content header h2,
+div#editAddPersonalWorksItemModal div.content header h2
 {
     font-size: 20px;
     font-weight: bold;
@@ -14451,7 +15451,8 @@ div#editAddGalleryItemModal div.content header h2
     color: #fff;
     background: #f84b4b;
 }
-div#editAddGalleryItemModal div.content div.wrap input[type=text]
+div#editAddGalleryItemModal div.content div.wrap input[type=text],
+div#editAddPersonalWorksItemModal div.content div.wrap input[type=text]
 {
     width: 100%;
     height: 40px;
@@ -14460,18 +15461,22 @@ div#editAddGalleryItemModal div.content div.wrap input[type=text]
     border: 1px solid #222;
 }
 div#editAddGalleryItemModal div.content div.wrap input[type=checkbox],
-div#editAddGalleryItemModal div.content div.wrap input[type=file]
+div#editAddGalleryItemModal div.content div.wrap input[type=file],
+div#editAddPersonalWorksItemModal div.content div.wrap input[type=checkbox],
+div#editAddPersonalWorksItemModal div.content div.wrap input[type=file]
 {
     display: none;
 }
-div#editAddGalleryItemModal div.content div.wrap textarea
+div#editAddGalleryItemModal div.content div.wrap textarea,
+div#editAddPersonalWorksItemModal div.content div.wrap textarea
 {
     width: 100%;
     padding: 10px 10px; 
 
     border: 1px solid #222;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in
 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -14492,7 +15497,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in
     -ms-flex-align: center;
             align-items: center;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in h3
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in h3,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in h3
 {
     font-size: 20px;
     font-weight: bold;
@@ -14505,17 +15511,20 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in h3
     color: #fff;
     background: #f97070;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.categories input:checked + label
 {
     border: 1px solid #71ba00;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label:before
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories input:checked + label:before,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.categories input:checked + label:before
 {
     content: ' ';
 
     color: #71ba00;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.categories label
 {
     width: auto;
     margin-right: 10px;
@@ -14526,7 +15535,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label
     border: 1px solid #d50808; 
     background: #eee;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label:before
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label:before,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.categories label:before
 {
     font-family: 'Font Awesome 5 Free';
 
@@ -14534,15 +15544,18 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.categories label:be
 
     color: #d50808;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc textarea
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc textarea,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.desc textarea
 {
     min-height: 200px;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc #ephox_desc
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.desc #ephox_desc,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.desc #ephox_desc
 {
     height: auto !important;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail
 {
     -webkit-box-align: start;
     -webkit-align-items: flex-start;
@@ -14555,7 +15568,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail
     {
                 flex-direction: column; 
 
@@ -14565,7 +15579,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail
             -ms-flex-direction: column;
     }
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
 {
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
@@ -14579,32 +15594,37 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio
     {
         width: -webkit-calc(100%);
         width:         calc(100%);
     }
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio img
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio img,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.ratio img
 {
     display: block;
 
     width: 100%;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
 {
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.actions
     {
         width: -webkit-calc(100%);
         width:         calc(100%);
     }
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions label
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actions label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.thumbnail div.actions label
 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -14627,19 +15647,22 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.thumbnail div.actio
     -ms-flex-pack: center;
             justify-content: center;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media
 {
     position: relative; 
 
     width: 100%;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items
 {
     position: relative; 
 
     width: 100%;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item
 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -14661,7 +15684,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item
     {
                 flex-direction: column; 
 
@@ -14673,7 +15697,10 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
 {
     position: relative;
 
@@ -14687,7 +15714,10 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 {
     div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
     div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item video,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item > img
     {
         width: -webkit-calc(100%);
         width:         calc(100%);
@@ -14695,7 +15725,10 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > *:not(img),
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video > *:not(img),
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > *:not(img)
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > *:not(img),
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > *:not(img),
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item video > *:not(img),
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > *:not(img)
 {
     position: absolute;
     top: 0;
@@ -14706,26 +15739,32 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > img,
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item video > img,
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > img
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > img,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.wrap-item > img,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item video > img,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item > img > img
 {
     display: block;
 
     width: 100%;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
 {
     width: -webkit-calc(50% - 5px);
     width:         calc(50% - 5px);
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions
     {
         width: -webkit-calc(100%);
         width:         calc(100%);
     }
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
 {
     margin-bottom: 10px;
 
@@ -14733,23 +15772,27 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 }
 @media screen and (max-width: 520px)
 {
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions textarea
     {
         margin-top: 10px; 
         margin-bottom: 0;
     }
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label
 {
     border: 1px solid #71ba00;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label:before
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label:before,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox]:checked + label:before
 {
     content: ' ';
 
     color: #71ba00;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label
 {
     width: auto;
     padding: 10px;
@@ -14760,7 +15803,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
     border: 1px solid #d50808; 
     background: #eee;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label:before
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label:before,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions input[type=checkbox] + label:before
 {
     font-family: 'Font Awesome 5 Free';
 
@@ -14771,7 +15815,9 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
     color: #d50808;
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -14799,25 +15845,31 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div
 @media screen and (max-width: 520px)
 {
     div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
-    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
+    div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label,
+    div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a
     {
         margin-top: 10px; 
         margin-bottom: 0;
     }
 }
 div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label.deleteItemProject,
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a.deleteItemProject
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a.deleteItemProject,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions label.deleteItemProject,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.item div.actions a.deleteItemProject
 {
     background: #f96464;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.placeholder
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media div.items div.placeholder,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media div.items div.placeholder
 {
     margin: 10px auto; 
     padding: 10px;
 
     border: 1px dashed #222;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media .addMore
 {
     font-size: 18px;
     font-weight: bold;
@@ -14841,13 +15893,15 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore
     -ms-flex-align: center;
             align-items: center;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore span
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore span,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media .addMore span
 {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
             flex-shrink: 0;
 }
-div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore a
+div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore a,
+div#editAddPersonalWorksItemModal div.content div.wrap div.wrap-in.media .addMore a
 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -14870,7 +15924,8 @@ div#editAddGalleryItemModal div.content div.wrap div.wrap-in.media .addMore a
     -ms-flex-pack: center;
             justify-content: center;
 }
-div#editAddGalleryItemModal div.content div.wrap a.save
+div#editAddGalleryItemModal div.content div.wrap a.save,
+div#editAddPersonalWorksItemModal div.content div.wrap a.save
 {
     font-weight: bold;
 
@@ -14896,23 +15951,27 @@ div#editAddGalleryItemModal div.content div.wrap a.save
     -ms-flex-pack: center;
             justify-content: center;
 }
-div#editAddGalleryItemModal.active
+div#editAddGalleryItemModal.active,
+div#editAddPersonalWorksItemModal.active
 {
     right: 0;
 
     opacity: 1;
 }
-div#editAddGalleryItemModal.active div.overlay
+div#editAddGalleryItemModal.active div.overlay,
+div#editAddPersonalWorksItemModal.active div.overlay
 {
     right: 0;
 }
-div#editAddGalleryItemModal.active div.content
+div#editAddGalleryItemModal.active div.content,
+div#editAddPersonalWorksItemModal.active div.content
 {
     top: 0;
 }
 @media screen and (max-width: 768px)
 {
-    div#editAddGalleryItemModal.active div.content
+    div#editAddGalleryItemModal.active div.content,
+    div#editAddPersonalWorksItemModal.active div.content
     {
         top: auto; 
         right: 0;

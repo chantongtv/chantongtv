@@ -91,7 +91,8 @@
                 </a>
                 <nav id="main">
                     <ul>
-                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#jobs">Jobs</a></li>
+                        <li><a href="#personalworks">Personal Works</a></li>
                         <li><a href="#me">Me</a></li>
                         <!-- <li><a href="#contact">Contact</a></li> -->
                     </ul>
@@ -137,28 +138,42 @@
             </div>
         </div>
 
-        <div class="items-wrap">
+        <div class="items-wrap" id="jobs">
             <div class="bg">
                 <img src="/assets/img/bg4.svg" alt="" class="bg4">
                 <img src="/assets/img/bg3.svg" alt="" class="bg3">
                 <img src="/assets/img/bg2.svg" alt="" class="bg2">
             </div>
             <div class="container">
+                <h2>Jobs</h2>
                 <div class="items">                  
                 </div>
             </div>
         </div>
-
-    </section>
+        
+        <div class="items-wrap" id="personalworks">
+            <!-- <div class="bg">
+                <img src="/assets/img/bg6.svg" alt="" class="bg6">
+                <img src="/assets/img/bg7.svg" alt="" class="bg7">
+                <img src="/assets/img/bg8.svg" alt="" class="bg8">
+            </div> -->
+            <div class="container">
+                <h2>Personal Works</h2>
+                <div class="items">                  
+                </div>
+            </div>
+        </div>
+    </section> 
     <section id="me">
-        <div class="bg" data-stellar-ratio="1.25" data-stellar-vertical-offset="-100">
+        <div class="bg">
             <img src="/assets/img/bg5.svg" alt="" class="bg5">
         </div>
         <div class="container">
             <img src="/assets/img/chantong.png" alt="" class="photo">
             <div class="column">
-                <p>I graduated in Digital Design at 2012, worked with Motion Design and full animation since 2008.</p>
-                <p>I started as an animator and clean up participant in series, short films and long films. I already worked for TV show as a motion designer on the CQC TV Show, and I was the coordinator of Digi Agency's motion design for 4 years. And I'm currently at Producer Vetor Zero / Lobo vector and working with animation and motion designer.</p>
+                <p>I graduated in Digital Design in 2012, I have worked with Motion Design and full animation since 2008.</p>
+                <p>I had started as an animator and clean up participant in series, short films and long films. I also have already worked for TV show as a motion designer on the CQC TV Show, and I was a coordinator at Digi Agency's motion design for 4 years. </p>
+                <p>Now I'm currently at Producer Vetor Zero / Lobo vector and I am working with animation and motion design.</p>
             </div>
         </div>
     </section>
@@ -178,6 +193,12 @@
             <div class="scrollbar"></div>         
         </div>        
     </aside>
+
+    <div id="modalPersonalWorks">
+        <div class="overlay"></div>
+        <div class="content">
+        </div>        
+    </div>
     
     <div id="loading"></div>
     
@@ -189,6 +210,15 @@
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
     <script src="/assets/js/scripts.js?0001"></script>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145100617-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-145100617-1');
+    </script>
     
 </body>
 

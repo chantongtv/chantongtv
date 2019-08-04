@@ -7735,6 +7735,7 @@ APP.component.Utils = {
 var data;
 var $itens;
 var gModal = $('#editAddGalleryItemModal');
+var pModal = $('#editAddPersonalWorksItemModal');
 var descTextbox;
 APP.controller.Admin = {
 
@@ -7748,11 +7749,16 @@ APP.controller.Admin = {
     setup : function () {
         APP.controller.Admin.tabsShowAndHide();
         APP.controller.Admin.reorderGallery();
-
+        APP.controller.Admin.reorderPersonalWorks();
+        
         APP.controller.Admin.actionsHeroVideo();
         APP.controller.Admin.actionsFeaturedVideos();
+
         APP.controller.Admin.actionsGallery();
         APP.controller.Admin.actionsGalleryItem();
+
+        APP.controller.Admin.actionsPersonalWorks();
+        APP.controller.Admin.actionsPersonalWorksItem();
 
         $('#loading').fadeOut();
         $('body').removeClass('loading');  
@@ -7813,7 +7819,7 @@ APP.controller.Admin = {
                 $('section#admin div#featuredVideos div.item.'+index + ' iframe').attr('src', `https://player.vimeo.com/video/${vimeoId[1]}?title=0&byline=0&portrait=0`)
             });
 
-            // Itens da galeria
+            // Itens Jobs
             var wrap = $('section#admin div#gallery div.items');
             $.each(data['gallery'], function(index, val) {
                 wrap.append(`               
@@ -7826,7 +7832,24 @@ APP.controller.Admin = {
                 `)
             });
 
-            tinysort('section#admin div#gallery div.items div.item',{attr:'data-order'});
+            // Itens Personal Works
+            var wrap = $('section#admin div#personalworks div.items');
+            $.each(data['personalworks'], function(index, val) {
+                var imageFeatured = "";
+                $.each(val.media, function(i, feat) {
+                    feat.featured ? imageFeatured = feat.url : "";
+                });
+                wrap.append(`               
+                    <div data-order="${val.order}" data-id="${index}" class="item" style="background-image: url(${imageFeatured != "" ? imageFeatured : val.media[0].url})">
+                        <span>${val.name}</span>
+                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                        <a href="#" class="editItem"><i class="fas fa-edit"></i></a>
+                        <a href="#" class="deleteItem"><i class="fas fa-trash"></i></a>
+                    </div>
+                `)
+            });
+
+            tinysort('section#admin div#personalworks div.items div.item',{attr:'data-order'});
 
         }).then(function() {
 
@@ -7994,6 +8017,43 @@ APP.controller.Admin = {
 
     },
 
+    uploadPersonalWorksItemImage : function (file, indexItem) {
+
+        $('#loading').fadeIn();
+        $('body').addClass('loading');
+
+        console.log(file);
+
+        var uploadTask = firebase.storage().ref().child('personalworks/images/' + moment().format("X") + "_" + file.name).put(file);
+
+        uploadTask.on('state_changed', function(snapshot){
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case firebase.storage.TaskState.PAUSED: // or 'paused'
+              console.log('Upload is paused');
+              break;
+            case firebase.storage.TaskState.RUNNING: // or 'running'
+              console.log('Upload is running');
+              break;
+          }
+        }, function(error) {
+          // Handle unsuccessful uploads
+        }, function() {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          uploadTask.snapshot.ref.getDownloadURL().then(function(url) {
+
+            $(pModal.find('div.item')[indexItem]).find('> img').attr('src', url)
+            
+            $('#loading').fadeOut();
+            $('body').removeClass('loading');
+
+          });
+        });
+
+    },
+
 
     // Vídeos em destaque na Galeria
     actionsFeaturedVideos : function () {
@@ -8042,7 +8102,7 @@ APP.controller.Admin = {
         });
     },
 
-    // Galeria
+    // Jobs
     actionsGallery : function () {
         $('body').on('click', 'div#gallery div.items div.item a.editItem', function(event) {
             event.preventDefault();
@@ -8154,7 +8214,7 @@ APP.controller.Admin = {
         $('body').on('click', '#editAddGalleryItemModal div.addMore a', function(event) {
             event.preventDefault();
             var type = $(this).data('type');
-            APP.controller.Admin.addGalerryItemMedia(type);
+            APP.controller.Admin.addGalleryItemMedia(type);
         });
         $('body').on('click', '#editAddGalleryItemModal div.items div.item a.deleteItemProject', function(event) {
             event.preventDefault();
@@ -8325,7 +8385,7 @@ APP.controller.Admin = {
 
         }
     },
-    addGalerryItemMedia : function (type) {
+    addGalleryItemMedia : function (type) {
         var temp_id = "temp_" + parseInt(Math.random() * 1000000000000);
         if (type === "image") {
             gModal.find('.media .items').append(`
@@ -8395,6 +8455,359 @@ APP.controller.Admin = {
         database.ref('/gallery/'+id).remove()
     },
 
+    // Personal Works
+    actionsPersonalWorks : function () {
+        $('body').on('click', 'div#personalworks div.items div.item a.editItem', function(event) {
+            event.preventDefault();
+            var id = $(this).parent().data('id');
+            APP.controller.Admin.editOrAddPersonalWorksItem(id);
+        });
+        $('body').on('click', 'div#personalworks div.items div.item a.deleteItem', function(event) {
+            event.preventDefault();
+            var id = $(this).parent().data('id');
+            APP.controller.Admin.confirmDeletePersonalWorksItem(id);
+        });
+        $('body').on('click', 'div#personalworks a.addNewItem', function(event) {
+            event.preventDefault();
+            APP.controller.Admin.editOrAddPersonalWorksItem();
+        });
+    },
+    reorderPersonalWorks : function () {
+        $('div#personalworks div.items').dragsort({ 
+            dragSelector: ".item", 
+            dragEnd: function() {
+                APP.controller.Admin.savePersonalWorksOrder();
+            }, 
+            dragBetween: false, 
+            placeHolderTemplate: "<div class='placeholder'></div>" 
+        });
+    },
+    savePersonalWorksOrder : function () {
+        $('section#admin div#personalworks div.items div.item').each(function(index, el) {
+            var index = $(this).index();
+            var id = $(this).attr('data-id');
+
+            database.ref('/personalworks/'+id+'/order').set(index);
+
+        });
+    },
+    actionsPersonalWorksItem : function () {
+        $('body').on('click', '#editAddPersonalWorksItemModal a.save', function(event) {
+            event.preventDefault();
+
+            if (pModal.attr('data-id') != null) {
+                var id = pModal.attr('data-id');
+            } else {
+                var id = moment().format('x');
+            }
+            var dataPersonalWorksItem = {};
+
+            // Categoria
+            // dataPersonalWorksItem.category = [];
+            // $('#editAddPersonalWorksItemModal .categories input:checked').each(function(index, el) {
+            //     dataPersonalWorksItem.category.push($(this).attr('id').replace('_', ''));
+            // });
+
+            // Descrição
+            // dataPersonalWorksItem.desc = descTextbox[0].content.get();
+
+            // Mídia
+            dataPersonalWorksItem.media = [];
+            $('#editAddPersonalWorksItemModal .media div.items div.item').each(function(index, el) {
+                var order = index;
+                var type = $(this).attr('class').replace('item ', '');
+                var featured = $(this).find('input[type=checkbox]').is(':checked');
+                if (type == "video") { var url = $(this).find('video').attr('src')}
+                if (type == "image") { var url = $(this).find('> img').attr('src')}
+                if (type == "embed") { var url = $(this).find('.actions textarea').val()}
+                dataPersonalWorksItem.media.push({
+                    order: order,
+                    type: type,
+                    url: url,
+                    featured: featured
+                })
+            });
+
+            // Nome
+            dataPersonalWorksItem.name = $('#editAddPersonalWorksItemModal #name').val();
+
+            // Ordem
+            dataPersonalWorksItem.order = $('#admin #personalworks .items .item').length;
+
+            // Thumbnail
+            // var reg = /(?:\(['"]?)(.*?)(?:['"]?\))/;
+            // var url = $('#editAddPersonalWorksItemModal .thumbnail .ratio').css('background-image') === "none" ? "" : reg.exec($('#editAddPersonalWorksItemModal .thumbnail .ratio').css('background-image'))[1];
+            // dataPersonalWorksItem.thumb = url;
+
+            if (window.confirm("Você realmente deseja salvar esse projeto?")) { 
+                APP.controller.Admin.savePersonalWorksItem(dataPersonalWorksItem, id);
+                if (pModal.attr('data-id') === undefined) {
+
+                    var wrap = $('section#admin div#personalworks div.items');
+                    wrap.append(`               
+                        <div data-order="${dataPersonalWorksItem.order}" data-id="${id}" class="item" style="background-image: url()">
+                            <span>${dataPersonalWorksItem.name}</span>
+                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                            <a href="#" class="editItem"><i class="fas fa-edit"></i></a>
+                            <a href="#" class="deleteItem"><i class="fas fa-trash"></i></a>
+                        </div>
+                    `)
+
+                    tinysort('section#admin div#personalworks div.items div.item',{attr:'data-order'});
+
+                }
+            }
+
+        });
+        $('body').on('click', '#editAddPersonalWorksItemModal a.close', function(event) {
+            if (window.confirm("Você realmente deseja sair desse projeto?")) { 
+                $('#editAddPersonalWorksItemModal').removeClass('active');
+            }
+        });
+        $('body').on('click', '#editAddPersonalWorksItemModal div.addMore a', function(event) {
+            event.preventDefault();
+            var type = $(this).data('type');
+            APP.controller.Admin.addPersonalWorksItemMedia(type);
+        });
+        $('body').on('click', '#editAddPersonalWorksItemModal div.items div.item a.deleteItemProject', function(event) {
+            event.preventDefault();
+            $(this).parents('.item').remove();
+            APP.controller.Admin.dragSortPersonalWorksItemMedia();
+        });
+        // $('body').on('change', '#editAddPersonalWorksItemModal div.thumbnail input[type=file]', function(event) {
+        //     event.preventDefault()
+        //     var file = $(this)[0].files[0];
+        //     APP.controller.Admin.uploadPersonalWorksThumbImage(file);            
+        // });
+        // $('body').on('change', '#editAddPersonalWorksItemModal div.items div.item.video input[type=file]', function(event) {
+        //     event.preventDefault()
+        //     var file = $(this)[0].files[0];
+        //     var indexItem = $(this).parents('.item').index();
+        //     APP.controller.Admin.uploadPersonalWorksItemVideo(file, indexItem);            
+        // });
+        $('body').on('change', '#editAddPersonalWorksItemModal div.items div.item.image input[type=file]', function(event) {
+            var file = $(this)[0].files[0];
+            var indexItem = $(this).parents('.item').index();
+            APP.controller.Admin.uploadPersonalWorksItemImage(file, indexItem);
+        });
+
+        // $('body').on('keyup', '#editAddPersonalWorksItemModal div.items div.item.embed textarea', function(event) {
+        //     var code = $(this).val()
+        //     $(this).parents('.item').find('.wrap-item').html(`
+        //         ${code}
+        //         <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+        //     `)
+        // });   
+
+    },
+    resetEditOrAddPersonalWorksItem : function () {
+        pModal.removeAttr('data-id');
+        pModal.find('div.content div.name input#name').val("");
+        pModal.find('div.content div.categories input[type=checkbox]').prop('checked', false);
+        pModal.find('div.content div.desc').html('<h3>Descrição:</h3><textarea id="desc"></textarea>');
+        pModal.find('div.content div.thumbnail div.ratio').removeAttr('style');
+        pModal.find('div.content div.media div.items').html('');
+    },
+    dragSortPersonalWorksItemMedia : function () {
+        pModal.find('div.media div.items').dragsort("destroy");
+        pModal.find('div.media div.items').dragsort({ 
+            dragSelector: ".item", 
+            dragEnd: function() {
+                pModal.find('div.media div.items div.item').each(function(index, el) {
+                    $(this).attr('data-order', index);
+                });
+            }, 
+            dragBetween: false, 
+            placeHolderTemplate: "<div class='placeholder'></div>" 
+        });
+    },
+    editOrAddPersonalWorksItem : function (id) {
+    
+        // Reseta o os itens na tela
+        APP.controller.Admin.resetEditOrAddPersonalWorksItem();
+        
+        descTextbox = textboxio.replaceAll('textarea#desc', {
+            paste: {
+                style: 'clean'
+            }
+        });
+
+        if (id === undefined) {
+            // Insere o Título do Modal
+            pModal.find('header h2').html("Adicionar novo projeto");
+            $('#editAddPersonalWorksItemModal').addClass('active');
+        } else {
+
+            database.ref('/').once('value').then(function(snapshot) {
+                data = snapshot.val()
+            }).then(function() {
+
+                console.log(data["personalworks"][id])
+                console.table(data["personalworks"][id]["media"])
+
+                var pData = data["personalworks"][id]
+
+                pModal.attr('data-id', id)
+                
+                // Insere o Título do Modal
+                pModal.find('header h2').html("Editar projeto");
+
+                // Insere o nome
+                pModal.find('input#name').val(pData["name"])
+
+                // Insere as categorias selecionadas
+                // if (typeof(pData["category"]) != "undefined") {
+                //     $.each(pData["category"], function(index, val) {
+                //         pModal.find('input#_' + val).prop('checked', true)
+                //     });
+                // }
+
+                // Insere o Thumbnail
+                // pModal.find('div.thumbnail div.ratio').css('background-image', 'url(' + pData['thumb'] + ')');
+
+                // Insere descrição
+                // descTextbox[0].content.set(pData["desc"])
+
+                // Insere os itens de mídia
+                if (typeof(pData["media"]) != "undefined") {
+                    pModal.find('div.media .items').append(`
+                        ${pData["media"].map(function(media, index) {
+                            var temp_id = "temp_" + parseInt(Math.random() * 1000000000000);
+                            if (media.type === "image") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <img src="${media.url}" />
+                                        <div class="actions">
+                                            <label for="${temp_id}">Alterar imagem</label>
+                                            <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
+                                            <a href="#" class="deleteItemProject">Apagar Imagem</a>
+                                        </div>
+                                    </div>
+                                `;
+                            } else if (media.type === "video") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <div class="wrap-item">
+                                            <video controls src="${media.url}"></video>
+                                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                                        </div>
+                                        <div class="actions">
+                                            <label for="${temp_id}">Alterar vídeo</label>
+                                            <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
+                                            <a href="#" class="deleteItemProject">Apagar Vídeo</a>
+                                        </div>
+                                    </div>
+                                `;
+                            } else if (media.type === "embed") {
+                                return `
+                                    <div class="item ${media.type}" data-order="${media.order}">
+                                        <div class="wrap-item">
+                                            ${media.url}
+                                            <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                                        </div>
+                                        <div class="actions">
+                                            <textarea>${media.url}</textarea>
+                                            
+                                            <input ${media.featured ? "checked" : ""} id="${temp_id}_destaque" type="checkbox" />
+                                            <label for="${temp_id}_destaque">Item em destaque</label>
+
+                                            <a href="#" class="deleteItemProject">Apagar embed</a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        }).join("")}
+                    `)
+                    tinysort('#editAddPersonalWorksItemModal div.media div.items>*',{attr:'data-order'});
+                    APP.controller.Admin.dragSortPersonalWorksItemMedia();
+                }
+
+                $('#editAddPersonalWorksItemModal').addClass('active');
+                
+
+            })
+
+
+        }
+    },
+    addPersonalWorksItemMedia : function (type) {
+        var temp_id = "temp_" + parseInt(Math.random() * 1000000000000);
+        if (type === "image") {
+            pModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${pModal.find('.media .items .item').length}">
+                    <img src="" />
+                    <div class="actions">
+                        <label for="${temp_id}">Alterar imagem</label>
+                        <input id="${temp_id}" accept=".jpg, .png, .gif" size="10240" type="file" />
+
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
+                        <a href="#" class="deleteItemProject">Apagar Imagem</a>
+                    </div>
+                </div>
+            `)
+        } else if (type === "video") {
+            pModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${pModal.find('.media .items .item').length}">
+                    <div class="wrap-item">
+                        <video controls src=""></video>
+                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                    </div>
+                    <div class="actions">
+                        <label for="${temp_id}">Alterar vídeo</label>
+                        <input id="${temp_id}" accept=".mp4" size="10240" type="file" />
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
+                        <a href="#" class="deleteItemProject">Apagar Vídeo</a>
+                    </div>
+                </div>
+            `);
+        } else if (type === "embed") {
+            pModal.find('.media .items').append(`
+                <div class="item ${type}" data-order="${pModal.find('.media .items .item').length}">
+                    <div class="wrap-item">
+                        
+                        <img src="/assets/img/ratio16x9.png" alt="" class="ratio">
+                    </div>
+                    <div class="actions">
+                        <textarea placeholder="Cole o código de embed aqui"></textarea>
+                        
+                        <input id="${temp_id}_destaque" type="checkbox" />
+                        <label for="${temp_id}_destaque">Item em destaque</label>
+
+                        <a href="#" class="deleteItemProject">Apagar embed</a>
+                    </div>
+                </div>
+            `);
+        }
+    },
+    savePersonalWorksItem : function (dataPersonalWorksItem, id) {
+        database.ref('/personalworks/'+id).set(dataPersonalWorksItem);
+        APP.controller.Admin.savePersonalWorksOrder();
+        pModal.removeClass('active');
+    },
+    confirmDeletePersonalWorksItem : function (id) {
+        if (window.confirm("Você realmente deseja apagar esse projeto?")) { 
+            APP.controller.Admin.deletePersonalWorksItem(id);
+            $('#personalworks .item[data-id='+id+']').remove();
+            APP.controller.Admin.savePersonalWorksOrder();
+        }
+    },
+    deletePersonalWorksItem : function (id) {
+        database.ref('/personalworks/'+id).remove()
+    },
+
 };
 /*
 |--------------------------------------------------------------------------
@@ -8432,7 +8845,8 @@ APP.controller.General = {
 |--------------------------------------------------------------------------
 */
 var data;
-var $itens;
+var $itensJobs;
+var $itensPersonalWorks;
 let simplebar;
 APP.controller.Home = {
 
@@ -8445,6 +8859,7 @@ APP.controller.Home = {
         this.scrollFilters();
         this.menu();
         this.clicksItemGallery();
+        this.clicksItemPersonalWorks();
 
         $('section#portfolio ul.filters').find('li a').first().click();
 
@@ -8459,8 +8874,11 @@ APP.controller.Home = {
         });
 
         $('section#portfolio div.items').imagesLoaded( function() {
-            var $itens = $('section#portfolio div.items').isotope({
+            var $itensJobs = $('section#portfolio #jobs div.items').isotope({
                 layoutMode: 'fitRows'
+            });
+
+            var $itensPersonalWorks = $('section#portfolio #personalworks div.items').isotope({
             });
             
             $('#loading').fadeOut();
@@ -8490,7 +8908,7 @@ APP.controller.Home = {
             $('.featured .video').find('.' + filterValue.split('._')[1]).addClass('active');
             
 
-            $('section#portfolio div.items').isotope({ filter: filterValue });
+            $('section#portfolio div#jobs div.items').isotope({ filter: filterValue });
         });
 
     },
@@ -8529,7 +8947,7 @@ APP.controller.Home = {
     },
 
     clicksItemGallery : function () {
-        $('body').on('click', '.items-wrap .items .item', function(event) {
+        $('body').on('click', '#jobs.items-wrap .items .item', function(event) {
             event.preventDefault();
             var idItem = $(this).attr('data-id');
             APP.controller.Home.openItemGallery(idItem);
@@ -8620,6 +9038,80 @@ APP.controller.Home = {
 
     },
 
+    clicksItemPersonalWorks : function () {
+        $('body').on('click', '#personalworks.items-wrap .items .item', function(event) {
+            event.preventDefault();
+            var idItem = $(this).attr('data-id');
+            APP.controller.Home.openItemPersonalWorks(idItem);
+        });
+
+        $('body').on('click', 'div#modalPersonalWorks div.overlay, div#modalPersonalWorks a.close', function(event) {
+            event.preventDefault();
+            // $('aside#itemGallery div.content').mCustomScrollbar('destroy');
+            $('div#modalPersonalWorks').removeClass('active');
+            $('div#modalPersonalWorks div.content').html("");
+            $('div#modalPersonalWorks div.media').slick('destroy');
+            $('body, html').removeClass('lockScroll');
+        });
+    },
+
+    openItemPersonalWorks : function (idItem) {
+        $('#loading').stop().fadeIn();
+
+        var dataItem = data["personalworks"][idItem];
+        var content = $('div#modalPersonalWorks div.content');
+
+        content.append(`
+            <div class="header">
+                <a class="close"><i class="fas fa-times"></i></a>
+                <h2>${dataItem.name}</h2>
+            </div>
+            <div class="wrap">
+                <div class="media" >
+                    ${dataItem.media.map(function(media, index) {
+                        if (media.type === "image" && !media.featured) {
+                            return `<img data-order="${media.url.split('.').pop().split('?')[0] === "gif" ? media.order + 100 : media.order}" src="${media.url}" class="grid-item ${media.url.split('.').pop().split('?')[0]}" />`;
+                        } else if (media.type === "video" && !media.featured) {
+                            return `<div class="grid-item video" data-order="${media.order}"><video controls src="${media.url}"></video></div>`;
+                        } else if (media.type === "embed" && !media.featured) {
+                            return `<div data-order="${media.order}" class="grid-item embed">${media.url}</div>`;
+                        }
+                    }).join("")}
+                </div>
+            </div>
+        `)
+
+
+        var $grid = $('div#modalPersonalWorks div.media').imagesLoaded( function() {
+            tinysort('div#modalPersonalWorks>div.content>div.scrollbar>div.media>*',{attr:'data-order'});
+            $('div#modalPersonalWorks').addClass('active');
+            $('body, html').addClass('lockScroll');
+
+            // setTimeout(function() {
+            //     $grid.masonry({
+            //       // set itemSelector so .grid-sizer is not used in layout
+            //       itemSelector: '.grid-item',
+            //       // use element for option
+            //       columnWidth: '.grid-sizer',
+            //       percentPosition: true,
+            //     })
+            // }, 200);
+            
+            if (isMobile.any) {
+                $('div#modalPersonalWorks div.content').addClass('mobile')
+            }
+
+            $('div#modalPersonalWorks div.media').slick({
+                nextArrow: `<a class="next"><i class="fas fa-chevron-right"></i></a>`,
+                prevArrow: `<a class="prev"><i class="fas fa-chevron-left"></i></a>`
+            });
+            console.log("carregou as imagens")
+            $('#loading').stop().fadeOut();
+        });
+
+    },
+    
+
     fillContentFirebase : function () {
         
         database.ref('/').once('value').then(function(snapshot) {
@@ -8637,8 +9129,8 @@ APP.controller.Home = {
                 `)
             });
 
-            // Itens da galeria
-            var wrap = $('.items-wrap .items');
+            // Itens Jobs
+            var wrap = $('#jobs.items-wrap .items');
             $.each(data['gallery'], function(index, val) {
                 var categories = "";
                 $.each(val.category, function(i, cat) {
@@ -8652,7 +9144,28 @@ APP.controller.Home = {
                 `)
             });
 
-            tinysort('.items-wrap .items .item',{attr:'data-order'});
+            tinysort('#jobs.items-wrap .items .item',{attr:'data-order'});
+
+            // Itens Personal Works
+            var wrap = $('#personalworks.items-wrap .items');
+            $.each(data['personalworks'], function(index, val) {
+                var categories = "";
+                $.each(val.category, function(i, cat) {
+                    categories += " _" + cat;
+                });
+                var imageFeatured = "";
+                $.each(val.media, function(i, feat) {
+                    feat.featured ? imageFeatured = feat.url : "";
+                });
+                wrap.append(`
+                    <div data-order="${val.order}" data-id="${index}" class="item${categories}">
+                        <span>${val.name}</span>
+                        <img src="${imageFeatured != "" ? imageFeatured : val.media[0].url}" alt="" class="ratio">
+                    </div>
+                `)
+            });
+
+            tinysort('#personalworks.items-wrap .items .item',{attr:'data-order'});
 
         }).then(function() {
 

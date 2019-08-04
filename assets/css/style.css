@@ -14009,6 +14009,10 @@ section#portfolio ul.filters.fixed
 {
     position: fixed;
     top: 80px;
+
+    -webkit-transition: all 0s ease;
+         -o-transition: all 0s ease;
+            transition: all 0s ease;
 }
 section#portfolio ul.filters.fixed li:first-of-type a:before
 {
@@ -14026,6 +14030,14 @@ section#portfolio ul.filters.fixed li:last-of-type a:hover:before
 section#portfolio ul.filters.fixed li:last-of-type a.active:before
 {
     border-color: #e4ffba transparent transparent transparent !important;
+}
+section#portfolio ul.filters.fixed.hide
+{
+    top: 0; 
+
+    -webkit-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
 }
 section#portfolio ul.filters li
 {

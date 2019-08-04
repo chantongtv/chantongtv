@@ -8921,6 +8921,12 @@ APP.controller.Home = {
             } else {
                 $('section#portfolio ul.filters').removeClass('fixed')
             }
+
+            if (scroll >= $('section#portfolio').offset().top - 100 && scroll <= $('div#personalworks').offset().top - 100) {
+                $('section#portfolio ul.filters').removeClass('hide')
+            } else {
+                $('section#portfolio ul.filters').addClass('hide')
+            }
         });
     },
 

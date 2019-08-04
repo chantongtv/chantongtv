@@ -268,7 +268,8 @@ APP.controller.Home = {
 
             $('div#modalPersonalWorks div.media').slick({
                 nextArrow: `<a class="next"><i class="fas fa-chevron-right"></i></a>`,
-                prevArrow: `<a class="prev"><i class="fas fa-chevron-left"></i></a>`
+                prevArrow: `<a class="prev"><i class="fas fa-chevron-left"></i></a>`,
+                adaptiveHeight: true
             });
             console.log("carregou as imagens")
             $('#loading').stop().fadeOut();

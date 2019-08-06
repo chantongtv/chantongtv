@@ -9155,6 +9155,9 @@ APP.controller.Home = {
 
             // Itens Personal Works
             var wrap = $('#personalworks.items-wrap .items');
+            if (data['personalworks'] === undefined) {
+                $('#personalworks.items-wrap h2').hide();
+            }
             $.each(data['personalworks'], function(index, val) {
                 var categories = "";
                 $.each(val.category, function(i, cat) {
